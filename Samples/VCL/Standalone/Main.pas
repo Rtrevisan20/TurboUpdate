@@ -41,7 +41,7 @@ procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
   FTurboUpdate
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Standalone')
+   .keyName('TurboUpdate.Vcl.Standalone')
    .Version(TFileVersion.CreateForFile(ParamStr(0)))
    .ExecUpdateApp('VclUpdate.exe')
    .KillTaskApp(ExtractFileName(ParamStr(0)))
@@ -51,7 +51,7 @@ procedure TFormMain.ButtonCheckUpdateNewClick(Sender: TObject);
 begin
   FTurboUpdate
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Standalone')
+   .keyName('TurboUpdate.Vcl.Standalone')
    .Version(TFileVersion.CreateForFile('2.0.0.0'))
    .ExecUpdateApp('VclUpdate.exe')
    .KillTaskApp(ExtractFileName(ParamStr(0)))
@@ -61,7 +61,7 @@ procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
   FTurboUpdate
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Standalone')
+   .keyName('TurboUpdate.Vcl.Standalone')
    .Version(TFileVersion.CreateForFile('1.9.3.0'))
    .ExecUpdateApp('VclUpdate.exe')
    .KillTaskApp(ExtractFileName(ParamStr(0)))

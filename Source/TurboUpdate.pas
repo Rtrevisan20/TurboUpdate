@@ -39,33 +39,33 @@ uses
 type
   TTurboUpdate = class(TInterfacedObject, iTurboUpdate)
   private
-    FConsts : IMessageConsts;
-    MSG: iHDMessageDlg;
-    FExeNames: TStringArray;
-    FUrls: TStringArray;
-    FAppName: string;
-    FRootPath: string;
-    FDescription: string;
-    FPngRes: string;
-    FVersion: TFileVersion;
-    FExecUpdateApp: string;
-    FKillTaskApp: TFileName;
+    FConsts         : IMessageConsts;
+    MSG             : iHDMessageDlg;
+    FExeNames       : TStringArray;
+    FUrls           : TStringArray;
+    FKeyName        : string;
+    FRootPath       : string;
+    FDescription    : string;
+    FPngRes         : string;
+    FVersion        : TFileVersion;
+    FExecUpdateApp  : string;
+    FKillTaskApp    : TFileName;
     procedure CheckVCL(UpdateAviable: Boolean; Version: TFileVersion);
     procedure CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
     procedure CheckStandalone(UpdateAviable: Boolean; Version: TFileVersion);
   public
     constructor Create;
     destructor Destroy; override;
-    class function New: iTurboUpdate;
-    function ExeNames(aValue: TStringArray): iTurboUpdate;
-    function Urls(aValue: TStringArray): iTurboUpdate;
-    function AppName(aValue: string): iTurboUpdate;
-    function RootPath(aValue: string): iTurboUpdate;
-    function Description(aValue: string): iTurboUpdate;
-    function PngRes(aValue: string): iTurboUpdate;
-    function Version(aValue: TFileVersion) : iTurboUpdate;
-    function ExecUpdateApp(aValue: string = 'Update.exe'): iTurboUpdate;
-    function KillTaskApp(aValue: TFileName): iTurboUpdate;
+    class function New                                    : iTurboUpdate;
+    function ExeNames(aValue: TStringArray)               : iTurboUpdate;
+    function Urls(aValue: TStringArray)                   : iTurboUpdate;
+    function KeyName(aValue: string)                      : iTurboUpdate;
+    function RootPath(aValue: string)                     : iTurboUpdate;
+    function Description(aValue: string)                  : iTurboUpdate;
+    function PngRes(aValue: string)                       : iTurboUpdate;
+    function Version(aValue: TFileVersion)                : iTurboUpdate;
+    function ExecUpdateApp(aValue: string = 'Update.exe') : iTurboUpdate;
+    function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
     procedure UpdateThreadVCL;
     procedure UpdateThreadFMX;
     procedure Standalone;
@@ -95,7 +95,7 @@ begin
      FUpdateInfo             := Default(TUpdateInfo);
      FUpdateInfo.Urls        := FUrls;
      FUpdateInfo.ExeNames    := FExeNames;
-     FUpdateInfo.Name        := FAppName;
+     FUpdateInfo.KeyName     := FKeyName;
      FUpdateInfo.Description := FDescription;
      FUpdateInfo.RootPath    := FRootPath;
      FUpdateInfo.PngRes      := FPngRes;
@@ -153,7 +153,7 @@ begin
      FUpdateInfo             := Default(TUpdateInfo);
      FUpdateInfo.Urls        := FUrls;
      FUpdateInfo.ExeNames    := FExeNames;
-     FUpdateInfo.Name        := FAppName;
+     FUpdateInfo.KeyName     := FKeyName;
      FUpdateInfo.Description := FDescription;
      FUpdateInfo.RootPath    := FRootPath;
      FUpdateInfo.PngRes      := FPngRes;
@@ -170,7 +170,7 @@ end;
 
 constructor TTurboUpdate.Create;
 begin
-  MSG := THDMessageDlg.New;
+  MSG     := THDMessageDlg.New;
   FConsts := TFactoryConsts.New.Consts;
 end;
 
@@ -194,7 +194,7 @@ end;
 
 function TTurboUpdate.KillTaskApp(aValue: TFileName): iTurboUpdate;
 begin
-  Result := Self;
+  Result       := Self;
   FKillTaskApp := aValue;
 end;
 
@@ -204,10 +204,10 @@ begin
   FExecUpdateApp := aValue;
 end;
 
-function TTurboUpdate.AppName(aValue: string): iTurboUpdate;
+function TTurboUpdate.KeyName(aValue: string): iTurboUpdate;
 begin
   Result := Self;
-  FAppName := aValue;
+  FKeyName := aValue;
 end;
 
 class function TTurboUpdate.New: iTurboUpdate;
@@ -229,22 +229,24 @@ end;
 
 procedure TTurboUpdate.Standalone;
 begin
-  CheckUpdate(FUrls, FAppName, FVersion, CheckStandalone);
+  CheckUpdate(FUrls, FKeyName, FVersion, CheckStandalone);
 end;
 
 procedure TTurboUpdate.UpdateFMX;
 begin
-  CheckUpdate(FUrls, FAppName, FVersion, CheckFMX);
+  CheckUpdate(FUrls, FKeyName, FVersion, CheckFMX);
 end;
 
 procedure TTurboUpdate.UpdateThreadFMX;
 var
   FUpdateInfo: TUpdateInfo;
 begin
-  FUpdateInfo.Urls := FUrls;
-  FUpdateInfo.ExeNames := FExeNames;
-  FUpdateInfo.Name := FAppName;
+  FUpdateInfo.Urls        := FUrls;
+  FUpdateInfo.ExeNames    := FExeNames;
+  FUpdateInfo.KeyName     := FKeyName;
   FUpdateInfo.Description := FDescription;
+  FUpdateInfo.RootPath    := FRootPath;
+  FUpdateInfo.PngRes      := FPngRes;
   FMXUpdate(FUpdateInfo);
 end;
 
@@ -252,16 +254,18 @@ procedure TTurboUpdate.UpdateThreadVCL;
 var
   FUpdateInfo: TUpdateInfo;
 begin
-  FUpdateInfo.Urls := FUrls;
-  FUpdateInfo.ExeNames := FExeNames;
-  FUpdateInfo.Name := FAppName;
+  FUpdateInfo.Urls        := FUrls;
+  FUpdateInfo.ExeNames    := FExeNames;
+  FUpdateInfo.KeyName     := FKeyName;
   FUpdateInfo.Description := FDescription;
+  FUpdateInfo.RootPath    := FRootPath;
+  FUpdateInfo.PngRes      := FPngRes;
   VCLUpdate(FUpdateInfo);
 end;
 
 procedure TTurboUpdate.UpdateVCL;
 begin
-  CheckUpdate(FUrls, FAppName, FVersion, CheckVCL);
+  CheckUpdate(FUrls, FKeyName, FVersion, CheckVCL);
 end;
 
 function TTurboUpdate.Urls(aValue: TStringArray): iTurboUpdate;

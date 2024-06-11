@@ -12,6 +12,10 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Âû ìîæåòå çàêàçàòü ðàçðàáîòêó VCL/FMX êîìïîíåíòà íà çàêàç.                   }
 {******************************************************************************}
+{                                                                              }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.Model;
 
 interface
@@ -36,29 +40,30 @@ type
   protected type
     TUpdateResult = (Success, Fail, TryAgain, Abort);
   private
-    DownloadPath: string;
-    Urls: TStringArray;
-    ExeNames: TStringArray;
-    Name: string;
-    IsAbort: Boolean;
-    RootPath: string;
-    UpdateFile: string;
+    FLaunchUpdateApp : TFileName; // Adicionado por renato trevisan dia 10/06/2024 16:42:20
+    FDownloadPath    : string;
+    FUrls            : TStringArray;
+    FExeNames        : TStringArray;
+    FKeyName         : string;
+    FIsAbort         : Boolean;
+    FRootPath        : string;
+    FUpdateFile      : string;
   protected
-    View: IUpdateView;
+    FView  : IUpdateView;
     FConsts: IFactoryConsts;
     // Internal routlines
-    procedure SyncView(Proc: TThreadProcedure); // perfect
-    procedure SyncShowView; // perfect
-    procedure SyncCloseView; // perfect
-    function SyncErrorMessage(Text: string): Boolean; // perfect
-    function UpdateFileName: string; // perfect
-    function DoUpdate: TUpdateResult; virtual;
+    procedure SyncView(Proc: TThreadProcedure);          // perfect
+    procedure SyncShowView;                              // perfect
+    procedure SyncCloseView;                             // perfect
+    function SyncErrorMessage(Text: string)   : Boolean; // perfect
+    function GetUpdateFileName                : string;  // perfect
+    function ExtractAll(AStrins: TStringArray): Boolean;
     // ... routlines
-    function GetDownloadInfo: Boolean; virtual; // perfect
-    function Download: Boolean; virtual; // perfect
-    // function GetUpdateInfo: Boolean; virtual;
-    function Unpacking: Boolean; virtual; // perfect
-    procedure DeleteFiles; // ...
+    function DoUpdate                       : TUpdateResult; virtual; // perfect
+    function GetDownloadInfo                : Boolean; virtual; // perfect
+    function Download                       : Boolean; virtual; // perfect
+    function Unpacking                      : Boolean; virtual; // perfect
+    procedure DeleteFiles;   // perfect
     procedure Done; virtual; // perfect
     { IUpdateModel }
     procedure Cancel; virtual; // perfect
@@ -92,33 +97,34 @@ end;
 {$HINTS ON}
 
 { TUpdateModel }
-
 procedure TUpdater.Cancel;
 begin
-  IsAbort := True;
+  FIsAbort := True;
 end;
 
 procedure TUpdater.SyncCloseView;
 begin
   SyncView(
-    procedure
+   procedure
     begin
-      View.Close;
+      FView.Close;
     end);
 end;
 
 constructor TUpdater.Create(View: IUpdateView; UpdateInfo: TUpdateInfo);
 begin
+  FLaunchUpdateApp := ExtractFileName(ParamStr(0));
+  FConsts          := TFactoryConsts.New;
   // Info
-  FConsts := TFactoryConsts.New;
-  Urls := UpdateInfo.Urls;
-  Name := UpdateInfo.Name;
-  ExeNames := UpdateInfo.ExeNames + [ExtractFileName(ParamStr(0))];
-  RootPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)) +
-    PathDelim + UpdateInfo.RootPath);
+  FUrls     := UpdateInfo.Urls;
+  FKeyName  := UpdateInfo.KeyName;
+  FExeNames := UpdateInfo.ExeNames + [ExtractFileName(ParamStr(0))];
+  if UpdateInfo.RootPath.IsEmpty then //adicionado por renato trevisan dia 11/06/2024 14:00:30
+   FRootPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)) + PathDelim + UpdateInfo.RootPath) else
+   FRootPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)) + PathDelim);
 
   // set View
-  Self.View := View;
+  Self.FView := View;
 
   SyncView(
     procedure
@@ -132,7 +138,7 @@ begin
       if UpdateInfo.Description <> '' then
         View.Description := UpdateInfo.Description
       else
-        View.Description := UpdateInfo.Name;
+        View.Description := UpdateInfo.KeyName;
       // PngRes
       if UpdateInfo.PngRes <> '' then
         View.PngRes := UpdateInfo.PngRes;
@@ -147,13 +153,13 @@ end;
 
 procedure TUpdater.DeleteFiles;
 begin
-  if FileExists(UpdateFileName) then
-    DeleteFile(UpdateFileName);
+  if FileExists(GetUpdateFileName) then
+    DeleteFile(GetUpdateFileName);
 end;
 
 destructor TUpdater.Destroy;
 begin
-  View.Model := nil;
+  FView.Model := nil;
   inherited;
 end;
 
@@ -163,10 +169,11 @@ begin
   SyncView(
     procedure
     begin
-      View.State := TUpdateState.Done;
-      View.Status := FConsts.Consts.DoneStatus;
-      View.ShowMessage(FConsts.Consts.DoneMessage);
-      TurboUpdate.Model.Utils.LaunchUpdateApp(ExeNames[0], True); // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
+      FView.State := TUpdateState.Done;
+      FView.Status := FConsts.Consts.DoneStatus;
+      FView.ShowMessage(FConsts.Consts.DoneMessage);
+      // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
+      TurboUpdate.Model.Utils.LaunchUpdateApp(FLaunchUpdateApp, True);
     end);
 end;
 
@@ -176,24 +183,41 @@ begin
   SyncView(
     procedure
     begin
-      View.State := TUpdateState.Downloading;
-      View.Status := FConsts.Consts.DownloadingStatus;
+      FView.State := TUpdateState.Downloading;
+      FView.Status := FConsts.Consts.DownloadingStatus;
     end);
 
   try
-    Result := DowloadFile(DownloadPath, UpdateFileName,
-      procedure(Length, Progress: Int64; var Abort: Boolean)
+    Result := DowloadFile(FDownloadPath, GetUpdateFileName,
+     procedure(Length, Progress: Int64; var Abort: Boolean)
       begin
-        Abort := IsAbort;
+        Abort := FIsAbort;
         // View
         SyncView(
           procedure
           begin
-            View.Progress(Progress, Length);
+            FView.Progress(Progress, Length);
           end);
       end);
   except
     Result := False;
+  end;
+end;
+
+function TUpdater.ExtractAll(AStrins: TStringArray): Boolean;
+const
+  CExtractParameter = '&ALL';
+var
+  LStringList : TStringList;
+  LFindIndex  : integer;
+begin
+ // Adicionado por Renato Trevisan dia 11/06/2024 14:30:35
+ LStringList := TStringList.Create;
+  try
+   LStringList.AddStrings(AStrins);
+   Result := LStringList.Find(CExtractParameter, LFindIndex);
+  finally
+   FreeAndNil(LStringList);
   end;
 end;
 
@@ -205,63 +229,20 @@ begin
   SyncView(
     procedure
     begin
-      View.State := TUpdateState.Waiting;
-      View.Status := FConsts.Consts.WaitingStatus;
+      FView.State := TUpdateState.Waiting;
+      FView.Status := FConsts.Consts.WaitingStatus;
     end);
 
-  if GetUpdateVersion(Urls, Name, FileVersion) then
+  if GetUpdateVersion(FUrls, FKeyName, FileVersion) then
     SyncView(
       procedure
       begin
-        View.Version := Format(FConsts.Consts.Version, [FileVersion.ToString]);
+        FView.Version := Format(FConsts.Consts.Version, [FileVersion.ToString]);
       end);
 
-  DownloadPath := GetUpdateUrl(Urls, Name);
-  Result := DownloadPath <> '';
+  FDownloadPath := GetUpdateUrl(FUrls, FKeyName);
+  Result        := FDownloadPath <> '';
 end;
-
-{ function TUpdater.GetUpdateInfo: Boolean;
-  procedure Load(Ini: TCustomIniFile);
-  begin
-  RootPath := Ini.ReadString('main', 'RootPath', '');
-  end;
-  var
-  ZipFile: TZipFile;
-  Ini: TMemIniFile;
-  Stream: TBytesStream;
-  Strings: TStringList;
-  Header: TZipHeader;
-  Bytes: TBytes;
-  begin
-  Stream := nil;
-  Ini := nil;
-  Strings := nil;
-  ZipFile := TZipFile.Create;
-  try
-  ZipFile.Open(ExtractFileDir(ParamStr(0)) + PathDelim + 'Update.zip', TZipMode.zmRead);
-  if ZipFile.IndexOf('TurboUpdate.ini') <> -1 then
-  begin
-  // Load to stream
-  ZipFile.Read(ZipFile.IndexOf('TurboUpdate.ini'), Bytes);
-  Stream := TBytesStream.Create(Bytes);
-
-  // Load to strings
-  Strings := TStringList.Create;
-  Strings.LoadFromStream(Stream);
-
-  // Load to ini
-  Ini := TMemIniFile.Create('');
-  Ini.SetStrings(Strings);
-
-  Load(Ini);
-  end;
-  finally
-  ZipFile.Free;
-  Strings.Free;
-  Ini.Free;
-  Stream.Free;
-  end;
-  end; }
 
 function TUpdater.SyncErrorMessage(Text: string): Boolean;
 var
@@ -270,7 +251,7 @@ begin
   SyncView(
     procedure
     begin
-      R := View.ShowErrorMessage(Text);
+      R := FView.ShowErrorMessage(Text);
     end);
 
   Result := R;
@@ -281,70 +262,92 @@ begin
   SyncView(
     procedure
     begin
-      View.Show;
+      FView.Show;
     end);
 end;
 
 procedure TUpdater.SyncView(Proc: TThreadProcedure);
 begin
-  if View <> nil then
+  if FView <> nil then
     TThread.Synchronize(nil, Proc);
 end;
 
 function TUpdater.Unpacking: Boolean;
 var
-  ZipFile: TZipFile;
-  I: Integer;
-  FullFileName, FileName, ExeName: string;
+  LZipFile     : TZipFile;
+  LForIndex    : Integer;
+  LFullFileName: string;
+  LFileName    : string;
+  LExeName     : string;
 begin
   Result := True;
-
   // View
   SyncView(
-    procedure
+   procedure
     begin
-      View.State := TUpdateState.Unpacking;
-      View.Status := FConsts.Consts.UnpackingStatus;
+      FView.State  := TUpdateState.Unpacking;
+      FView.Status := FConsts.Consts.UnpackingStatus;
     end);
-
-  ZipFile := TZipFile.Create;
+ // Unpacking
+ LZipFile := TZipFile.Create;
   try
     try
-      ZipFile.Open(UpdateFileName, TZipMode.zmRead);
-
-      for I := 0 to ZipFile.FileCount - 1 do
+     LZipFile.Open(GetUpdateFileName, TZipMode.zmRead);
+     {Verifica se vai extratir tudo ou não
+      Adicionado e modificado por Renato Trevisan dia 11/06/2024 14:42:10}
+     if not ExtractAll(FExeNames) then
       begin
-        for ExeName in ExeNames do
+       for LForIndex := 0 to LZipFile.FileCount - 1 do
         begin
-         FileName := ExtractFileName(NormalizeFileName(ZipFile.FileName[I]));
-          if ExeName.ToUpper = FileName.ToUpper then
+         for LExeName in FExeNames do
           begin
-            FullFileName := RootPath + NormalizeFileName(ZipFile.FileName[I]);
+           LFileName := ExtractFileName(NormalizeFileName(LZipFile.FileName[LforIndex]));
+            if LExeName.ToUpper = LFileName.ToUpper then
+             begin
+              LFullFileName := FRootPath + NormalizeFileName(LZipFile.FileName[LforIndex]);
 
-            if not FileToOld(FullFileName) then
-              Exit(False);
+              if not FileToOld(LFullFileName) then
+                Exit(False);
 
-            Break;
+              Break;
+             end;
           end;
-        end;
-
-        ZipFile.Extract(ZipFile.FileNames[I], RootPath);
-
+         LZipFile.Extract(LZipFile.FileNames[LforIndex], FRootPath);
         // View
         SyncView(
-          procedure
+         procedure
           begin
-            View.Progress(I, ZipFile.FileCount - 1);
+            FView.Progress(LforIndex, LZipFile.FileCount - 1);
           end);
+        end;
+      end
+     else
+      begin
+       for LForIndex := 0 to LZipFile.FileCount - 1 do
+        begin
+         LFullFileName := FRootPath + NormalizeFileName(LZipFile.FileName[LforIndex]);
+
+         if not FileToOld(LFullFileName) then
+           begin
+            Exit(False);
+            Break;
+           end;
+
+         LZipFile.Extract(LZipFile.FileNames[LforIndex], FRootPath);
+
+        // View
+         SyncView(procedure
+          begin
+           FView.Progress(LforIndex, LZipFile.FileCount - 1);
+          end);
+        end;
       end;
     except
-      on EZipException do
-        Exit(False);
-      on EFOpenError do
-        Exit(False);
+      on EZipException do Exit(False);
+      on EFOpenError   do Exit(False);
     end;
   finally
-    ZipFile.Free;
+    LZipFile.Free;
   end;
 end;
 
@@ -352,7 +355,7 @@ function TUpdater.DoUpdate: TUpdateResult;
 begin
   // GetInfo
   if not GetDownloadInfo then
-    if IsAbort then
+    if FIsAbort then
       Exit(TUpdateResult.Abort)
     else if SyncErrorMessage(FConsts.Consts.ConnectionError) then
       Exit(TUpdateResult.TryAgain)
@@ -361,14 +364,12 @@ begin
 
   // Download
   if not Download then
-    if IsAbort then
+    if FIsAbort then
       Exit(TUpdateResult.Abort)
     else if SyncErrorMessage(FConsts.Consts.DownloadError) then
       Exit(TUpdateResult.TryAgain)
     else
       Exit(TUpdateResult.Fail);
-
-  // GetUpdateInfo;
 
   // Unpacking
   if not Unpacking then
@@ -386,42 +387,41 @@ end;
 
 procedure TUpdater.Update;
 var
-  Result: TUpdateResult;
+  FResult: TUpdateResult;
 begin
-  IsAbort := False;
+  FIsAbort := False;
   SyncShowView;
   try
-    // exit;
     repeat
-      Result := DoUpdate;
-    until Result <> TUpdateResult.TryAgain;
+      FResult := DoUpdate;
+    until FResult <> TUpdateResult.TryAgain;
   finally
     SyncCloseView;
   end;
 end;
 
-function TUpdater.UpdateFileName: string;
+function TUpdater.GetUpdateFileName: string;
 const
   ArchiveName = 'Update.zip';
 begin
-  if UpdateFile = '' then
+  if FUpdateFile = '' then
     Result := ExtractFileDir(ParamStr(0)) + PathDelim + ArchiveName
   else
-    Result := UpdateFile;
+    Result := FUpdateFile;
 end;
 
 procedure TUpdater.UpdateFromFile(FileName: string);
 var
   TryAgain: Boolean;
 begin
-  UpdateFile := FileName;
+  FUpdateFile := FileName;
   try
-    SyncShowView;
+   SyncShowView;
     try
-      TryAgain := False;
+     TryAgain := False;
       repeat
         // Unpacking
-        if Unpacking then
+       if Unpacking then
         begin
           Done;
         end
@@ -432,7 +432,7 @@ begin
       SyncCloseView;
     end;
   finally
-    UpdateFile := '';
+    FUpdateFile := '';
   end;
 end;
 

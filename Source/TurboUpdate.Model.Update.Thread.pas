@@ -35,9 +35,9 @@ type
   private
     class function IsDone: Boolean; static;
   protected
-    UpdateInfo: TUpdateInfo;
+    UpdateInfo      : TUpdateInfo;
     IsUpdateFromFile: Boolean;
-    FileName: string;
+    FileName        : string;
     procedure Execute; override;
     procedure Work; virtual; abstract;
     function CreateModel(View: IUpdateView): TUpdater; virtual;
@@ -51,8 +51,6 @@ type
   end;
 
 implementation
-
-{ TUpdateThread }
 
 constructor TUpdateThread.Create(UpdateInfo: TUpdateInfo);
 begin

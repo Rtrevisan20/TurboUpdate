@@ -41,14 +41,12 @@ var
 
 implementation
 {$R *.fmx}
-
-{ TFormMain }
 procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
   FTurboUpdate
    .ExeNames(['FmxApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Fmx.Standalone')
+   .KeyName('TurboUpdate.Fmx.Standalone')
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.CreateForFile(ParamStr(0)))
    .UpdateFMX;
@@ -58,7 +56,7 @@ begin
   FTurboUpdate
    .ExeNames(['FmxApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Fmx.Standalone')
+   .KeyName('TurboUpdate.Fmx.Standalone')
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.Create('2.0.0.0'))
    .UpdateFMX;
@@ -68,7 +66,7 @@ begin
   FTurboUpdate
    .ExeNames(['FmxApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Fmx.Standalone')
+   .KeyName('TurboUpdate.Fmx.Standalone')
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.Create('1.9.3.0'))
    .UpdateFMX;

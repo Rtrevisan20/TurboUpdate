@@ -27,15 +27,15 @@ uses
 type
   iTurboUpdate = interface // Adicionado por Renato Trevisan 15/01/24
     ['{55822428-30FE-41B2-A9F4-4A03CC04C2AB}']
-    function ExeNames(aValue: TStringArray): iTurboUpdate;
-    function Urls(aValue: TStringArray): iTurboUpdate;
-    function AppName(aValue: string): iTurboUpdate;
-    function RootPath(aValue: string): iTurboUpdate;
-    function Description(aValue: string): iTurboUpdate;
-    function PngRes(aValue: string): iTurboUpdate;
-    function Version(aValue: TFileVersion): iTurboUpdate;
-    function ExecUpdateApp(aValue: string = 'Update.exe'): iTurboUpdate;
-    function KillTaskApp(aValue: TFileName): iTurboUpdate;
+    function ExeNames(aValue: TStringArray)               : iTurboUpdate;
+    function Urls(aValue: TStringArray)                   : iTurboUpdate;
+    function KeyName(aValue: string)                      : iTurboUpdate;
+    function RootPath(aValue: string)                     : iTurboUpdate;
+    function Description(aValue: string)                  : iTurboUpdate;
+    function PngRes(aValue: string)                       : iTurboUpdate;
+    function Version(aValue: TFileVersion)                : iTurboUpdate;
+    function ExecUpdateApp(aValue: string = 'Update.exe') : iTurboUpdate;
+    function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
     procedure UpdateThreadVCL;
     procedure UpdateThreadFMX;
     procedure Standalone;

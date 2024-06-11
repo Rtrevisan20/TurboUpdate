@@ -16,7 +16,7 @@ begin
   TTurboUpdate.New
    .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Classic')
+   .KeyName('TurboUpdate.Vcl.Classic')
    .Description('TurboUpdate/Vcl/Classic')
    .UpdateThreadVCL;
 

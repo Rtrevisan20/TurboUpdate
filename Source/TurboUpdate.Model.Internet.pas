@@ -195,11 +195,11 @@ end;
 {$HINTS OFF}
 function DowloadFile(Url: string; Path: string; DownloadProgress: TReceiveDataEventRef): Boolean;
 var
-  Http: THttpClient;
-  Stream: TStream;
-  Hook: IHttpClientHook;
+  Http    : THttpClient;
+  Stream  : TStream;
+  Hook    : IHttpClientHook;
   Response: IHTTPResponse;
-  Time: Cardinal;
+  Time    : Cardinal;
 begin
   Result := False;
 

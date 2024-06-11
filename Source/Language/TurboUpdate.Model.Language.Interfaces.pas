@@ -23,20 +23,20 @@ interface
 type
   IMessageConsts = interface // Adicionado por Renato Trevisan 02/01/24
     ['{CCEA3692-C90A-48DA-801E-0543F49C6CBC}']
-    function WaitingStatus: string;
-    function DownloadingStatus: string;
-    function RenamingFilesStatus: string;
-    function UnpackingStatus: string;
-    function DoneStatus: string;
-    function ConnectionError: string;
-    function DownloadError: string;
-    function CorruptedFilesError: string;
-    function DoneMessage: string;
-    function DoneMessageRestart: string;
-    function Version: string;
-    function MsgTitle: string;
-    function MsgQuestion: string;
-    function MsgBodyLastVersion: string;
+    function WaitingStatus        : string;
+    function DownloadingStatus    : string;
+    function RenamingFilesStatus  : string;
+    function UnpackingStatus      : string;
+    function DoneStatus           : string;
+    function ConnectionError      : string;
+    function DownloadError        : string;
+    function CorruptedFilesError  : string;
+    function DoneMessage          : string;
+    function DoneMessageRestart   : string;
+    function Version              : string;
+    function MsgTitle             : string;
+    function MsgQuestion          : string;
+    function MsgBodyLastVersion   : string;
     function MsgBodyUpdateVersion : string;
   end;
 

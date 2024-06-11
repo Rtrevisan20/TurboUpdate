@@ -48,7 +48,7 @@ begin
   FTurboUpdate
    .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Classic')
+   .KeyName('TurboUpdate.Vcl.Classic')
    .Version(TFileVersion.CreateForFile(ParamStr(0)))
    .Description('TurboUpdate/Vcl/Classic')
    .UpdateVCL;
@@ -59,7 +59,7 @@ begin
   FTurboUpdate
    .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Classic')
+   .KeyName('TurboUpdate.Vcl.Classic')
    .Version(TFileVersion.CreateForFile('2.0.0.0'))
    .Description('TurboUpdate/Vcl/Classic')
    .UpdateVCL;
@@ -68,9 +68,9 @@ end;
 procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
   FTurboUpdate
-   .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
+   .ExeNames(['&ALL']) //VclApplication.exe', 'VclUpdate.exe
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Classic')
+   .KeyName('TurboUpdate.Vcl.Classic')
    .Version(TFileVersion.CreateForFile('1.9.3.0'))
    .Description('TurboUpdate/Vcl/Classic')
    .UpdateVCL;

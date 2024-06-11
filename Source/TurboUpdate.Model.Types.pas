@@ -52,13 +52,13 @@ type
 
   TUpdateInfo = record
     // Main
-    ExeNames: TStringArray;
-    Urls: TStringArray;
-    Name: string;
-    RootPath: string;
+    ExeNames    : TStringArray;
+    Urls        : TStringArray;
+    KeyName     : string;
     // Optional
-    Description: string;
-    PngRes: string;
+    RootPath    : string;
+    Description : string;
+    PngRes      : string;
   end;
 
 {$IFDEF MSWINDOWS}

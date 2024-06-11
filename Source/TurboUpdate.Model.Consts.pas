@@ -33,17 +33,12 @@ uses
 type
   TFactoryConsts = class (TInterfacedObject, IFactoryConsts)
     private
-    {$IFDEF EN-Us}
-      FLanguageUS : IMessageConsts;
-    {$ENDIF}
-    {$IFDEF PT-Br}
-      FLanguadePTbr : IMessageConsts;
-    {$ENDIF}
+      FConsts : IMessageConsts;
     public
       constructor Create;
       destructor Destroy; override;
       class function New : IFactoryConsts;
-      function Consts : IMessageConsts;
+      function Consts    : IMessageConsts;
   end;
 
 implementation
@@ -53,13 +48,13 @@ implementation
 function TFactoryConsts.Consts: IMessageConsts;
 begin
 {$IFDEF EN-Us}
-  FLanguageUS := TMessageConstsUS.New;
-  Result := FLanguageUS;
+  FConsts := TMessageConstsUS.New;
+  Result  := FConsts;
 {$ENDIF}
 
 {$IFDEF PT-Br}
-  FLanguadePTbr := TMessageConstsPTbr.New;
-  Result := FLanguadePTbr;
+  FConsts := TMessageConstsPTbr.New;
+  Result  := FConsts;
 {$ENDIF}
 end;
 

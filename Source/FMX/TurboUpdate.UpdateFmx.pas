@@ -39,45 +39,43 @@ implementation
 uses
   TurboUpdate.FormUpdateFmx;
 
-{ TFmxUpdateThread }
 function TFmxUpdateThread.CreateView: TCustomForm;
 begin
   Result := TFormUpdateFmx.Create(Application);
 end;
 procedure TFmxUpdateThread.Work;
 var
-  Model: TUpdater;
-  View: TCustomForm;
+  FModel: TUpdater;
+  FView: TCustomForm;
 begin
   // need waiting start mainloop
   while ApplicationState = TApplicationState.None do Sleep(0);
   Sync(procedure
   begin
-    View := CreateView;
+    FView := CreateView;
   end);
   if Application.MainForm = nil then
-    Application.MainForm := View;
-  Model := nil;
+    Application.MainForm := FView;
+  FModel := nil;
   try
-    Model := CreateModel(View as IUpdateView);
+    FModel := CreateModel(FView as IUpdateView);
     if IsUpdateFromFile then
-      Model.UpdateFromFile(FileName)
+      FModel.UpdateFromFile(FileName)
     else
-      Model.Update;
+      FModel.Update;
   finally
-    Model.Free;
-    if View <> Application.MainForm then
+    FModel.Free;
+    if FView <> Application.MainForm then
       Sync(procedure
       begin
-//        View.Action
-//        View.Release;
+        FView.DisposeOf;
       end)
     else
     begin
       IsUpdating := False;
       Sync(procedure
       begin
-        View.Close;
+        FView.Close;
       end)
     end;
   end;
