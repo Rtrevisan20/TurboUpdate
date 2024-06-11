@@ -113,7 +113,7 @@ end;
 
 constructor TUpdater.Create(View: IUpdateView; UpdateInfo: TUpdateInfo);
 begin
-  FLaunchUpdateApp := ExtractFileName(ParamStr(0));
+  FLaunchUpdateApp := ExtractFileName(ParamStr(0)); //adicionado por renato trevisan dia 10/06/2024 16:30:00
   FConsts          := TFactoryConsts.New;
   // Info
   FUrls     := UpdateInfo.Urls;
@@ -169,11 +169,13 @@ begin
   SyncView(
     procedure
     begin
-      FView.State := TUpdateState.Done;
-      FView.Status := FConsts.Consts.DoneStatus;
+      FView.State   := TUpdateState.Done;
+      FView.Status  := FConsts.Consts.DoneStatus;
       FView.ShowMessage(FConsts.Consts.DoneMessage);
       // open new update by application or app in inno setup //add by Francisco Aurino in 17/12/2022 16:25:43
       TurboUpdate.Model.Utils.LaunchUpdateApp(FLaunchUpdateApp, True);
+      // Adicionado por Renato Trevisan dia 11/06/2024 15:48:57
+      TurboUpdate.Model.Utils.Killtask(FLaunchUpdateApp);
     end);
 end;
 
@@ -305,14 +307,13 @@ begin
             if LExeName.ToUpper = LFileName.ToUpper then
              begin
               LFullFileName := FRootPath + NormalizeFileName(LZipFile.FileName[LforIndex]);
-
               if not FileToOld(LFullFileName) then
                 Exit(False);
 
+              LZipFile.Extract(LFileName, FRootPath);
               Break;
              end;
           end;
-         LZipFile.Extract(LZipFile.FileNames[LforIndex], FRootPath);
         // View
         SyncView(
          procedure
@@ -328,19 +329,14 @@ begin
          LFullFileName := FRootPath + NormalizeFileName(LZipFile.FileName[LforIndex]);
 
          if not FileToOld(LFullFileName) then
-           begin
             Exit(False);
-            Break;
-           end;
-
-         LZipFile.Extract(LZipFile.FileNames[LforIndex], FRootPath);
-
         // View
          SyncView(procedure
           begin
            FView.Progress(LforIndex, LZipFile.FileCount - 1);
           end);
         end;
+       LZipFile.ExtractAll(FRootPath);
       end;
     except
       on EZipException do Exit(False);
@@ -371,13 +367,13 @@ begin
     else
       Exit(TUpdateResult.Fail);
 
-  // Unpacking
+  //Unpacking
   if not Unpacking then
     if SyncErrorMessage(FConsts.Consts.CorruptedFilesError) then
       Exit(TUpdateResult.TryAgain)
     else
       Exit(TUpdateResult.Fail);
-
+  // Deleta arquivo .ZIP de atualização
   DeleteFiles;
 
   Done;

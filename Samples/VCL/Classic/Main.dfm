@@ -3,7 +3,7 @@ object FormMain: TFormMain
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Test'
+  Caption = 'Teste Local'
   ClientHeight = 88
   ClientWidth = 485
   Color = clBtnFace
@@ -12,7 +12,7 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OnCreate = FormCreate
+  Position = poMainFormCenter
   TextHeight = 13
   object Label1: TLabel
     Left = 8

@@ -6,7 +6,6 @@ uses
   System.Variants,
 
   TurboUpdate,
-  TurboUpdate.Interfaces,
   TurboUpdate.Model.Types,
 
   Vcl.Controls,
@@ -26,9 +25,7 @@ type
     procedure ButtonCheckUpdateOldClick(Sender: TObject);
     procedure ButtonCheckUpdateCurClick(Sender: TObject);
     procedure ButtonCheckUpdateNewClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
-    FTurboUpdate : iTurboUpdate;
   public
   end;
 
@@ -39,7 +36,7 @@ implementation
 {$R *.dfm}
 procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
-  FTurboUpdate
+  GlobalUpdate
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .keyName('TurboUpdate.Vcl.Standalone')
    .Version(TFileVersion.CreateForFile(ParamStr(0)))
@@ -49,7 +46,7 @@ begin
 end;
 procedure TFormMain.ButtonCheckUpdateNewClick(Sender: TObject);
 begin
-  FTurboUpdate
+  GlobalUpdate
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .keyName('TurboUpdate.Vcl.Standalone')
    .Version(TFileVersion.CreateForFile('2.0.0.0'))
@@ -59,18 +56,13 @@ begin
 end;
 procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
-  FTurboUpdate
+  GlobalUpdate
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .keyName('TurboUpdate.Vcl.Standalone')
    .Version(TFileVersion.CreateForFile('1.9.3.0'))
    .ExecUpdateApp('VclUpdate.exe')
    .KillTaskApp(ExtractFileName(ParamStr(0)))
    .Standalone;
-end;
-
-procedure TFormMain.FormCreate(Sender: TObject);
-begin
-  FTurboUpdate := TTurboUpdate.New;
 end;
 
 end.

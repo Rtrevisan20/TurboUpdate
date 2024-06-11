@@ -26,7 +26,7 @@ Adicione as seguintes pastas ao seu projeto, em *Project > Options > Delphi Comp
 ```
 
 #### Exemplos
-  * Veja alguns exemplos: [samples](https://github.com/errorcalc/TurboUpdate/tree/master/Samples)
+  * Veja alguns exemplos: [samples](https://github.com/Rtrevisan20/TurboUpdate/tree/master/Samples)
 
 ## Como usar
   * Existem algumas formas diferentes de usar o TurboUpdate. Você pode configurar ele para VCL ou FMX ou executar ele em Standalone.
@@ -35,24 +35,23 @@ Adicione as seguintes pastas ao seu projeto, em *Project > Options > Delphi Comp
 
 ```delphi
 uses 
-  TurboUpdate.Interfaces, 
+  TurboUpdate.Model.Types, 
   TurboUpdate;
 ``` 
 ## **Tipos de Usos**
 ### Parâmetros a serem passados
 ```delphi
 begin
-  FTurboUpdate := TTurboUpdate.New;
-   FTurboUpdate
-    .ExeNames(['executáveis a serem extraídos'])
+   GlobalUpdate
+    .ExeNames(['executáveis a serem extraídos', 'Ou pode passar o parâmetro &ALL para extrair tudo', '&ALL'])
     .Urls(['urls para buscar atualização'])
-    .AppName('nome da chave do aquivo .ini')
+    .KeyName('nome da chave do aquivo .ini')
     .Description('Descrição que vai aparecer na tela de atualização')
     .RootPath('Opcional: Nome da pasta onde deseja descompactar o executável atualizado')
     .PngRes('Opcional: Serve p/ trocar a imagem default da tela de atualização. Adicionar em Project > Resources and Images, e passar o nome do recurso. Ex: image.png')
-    .Version(TFileVersion.CreateForFile(verão do app. EX: pode ser o executável ou número da versão, '2.0.0.0'))
-    .ExecUpdateApp('App a ser executado para atualizar o sistema. Default: Update.exe')
-    .KillTaskApp('App a ser fechado antes de continuar com a atualização. Ex: Update.exe')
+    .Version(TFileVersion.CreateForFile(verão do app '2.0.0.0' ou o executável))
+    .ExecUpdateApp('Modo Standalone: App a ser executado para atualizar o sistema. Default: Update.exe')
+    .KillTaskApp('Modo Standalone: App a ser fechado antes de continuar com a atualização. Ex: Update.exe')
     .UpdateThreadVCL // Usar quando for um app de linha de comando - VCL
     .UpdateThreadFMX // Usar quando for um app de linha de comando - FMX
     .Standalone // Usar quando for chamar um app externo para fazer a atualização
@@ -64,10 +63,9 @@ end;
 #### Standalone
 ```delphi
 begin
-  FTurboUpdate := TTurboUpdate.New;
-   FTurboUpdate
+   GlobalUpdate
     .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
-    .AppName('TurboUpdate.Vcl.Classic')
+    .KeyName('TurboUpdate.Vcl.Classic')
     .Version(TFileVersion.CreateForFile(ParamStr(0)))
     .ExecUpdateApp() //App a ser executado para atualizar
     .KillTaskApp(ExtractFileName(ParamStr(0))) //App a ser fechado antes da atualização
@@ -77,11 +75,10 @@ end;
 #### Usando FMX passando o executável como parâmetro no Version 
 ```delphi
 begin
-  FTurboUpdate := TTurboUpdate.New;
-  FTurboUpdate
+  GlobalUpdate
    .ExeNames(['FmxApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Classic')
+   .KeyName('TurboUpdate.Vcl.Classic')
    .Description('TurboUpdate Atualizações...')
    .Version(TFileVersion.CreateForFile(ParamStr(0)))
    .RootPath('') //Pasta para descompactar - Opcional 
@@ -89,16 +86,15 @@ begin
    .UpdateFMX;
 end;
 ```
-#### Usando VCL 
+#### Usando VCL passando '2.0.0.0' o executável'' como parâmetro no Version  
 ```delphi
 begin
-  FTurboUpdate := TTurboUpdate.New;
-  FTurboUpdate
+  GlobalUpdate
    .ExeNames(['VclApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Classic')
+   .KeyName('TurboUpdate.Vcl.Classic')
    .Description('TurboUpdate Atualizações...')
-   .Version(TFileVersion.CreateForFile(ParamStr(0)))
+   .Version(TFileVersion.CreateForFile('2.0.0.0'))
    .RootPath('') //Opcional
    .PngRes('') //Opcional
    .UpdateVCL;
@@ -112,10 +108,10 @@ uses
 begin    
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  TTurboUpdate.New
+  GlobalUpdate
    .ExeNames(['VclApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/TurboUpdate/master/Update.ini'])
-   .AppName('TurboUpdate.Vcl.Classic')
+   .KeyName('TurboUpdate.Vcl.Classic')
    .Description('TurboUpdate Atualizações...')
    .UpdateThreadVCL;
   Application.Run;

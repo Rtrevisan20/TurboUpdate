@@ -123,7 +123,6 @@ object FormUpdate: TFormUpdate
       426082}
     Stretch = Mixed
     TabOrder = 0
-    ExplicitHeight = 128
   end
   object LayoutFotter: TEsLayout
     AlignWithMargins = True
@@ -137,8 +136,6 @@ object FormUpdate: TFormUpdate
     Margins.Bottom = 8
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 180
-    ExplicitWidth = 456
     object ButtonCancel: TButton
       Left = 397
       Top = 0
@@ -148,7 +145,6 @@ object FormUpdate: TFormUpdate
       Caption = 'Cancel'
       TabOrder = 0
       OnClick = ButtonCancelClick
-      ExplicitLeft = 381
     end
     object LinkLabelTurboUpdate: TLinkLabel
       Left = 1
@@ -176,13 +172,11 @@ object FormUpdate: TFormUpdate
     Align = alClient
     ParentBufferedChildren = False
     TabOrder = 2
-    ExplicitWidth = 318
-    ExplicitHeight = 128
     object LabelDescription: TLabel
       Left = 0
       Top = 0
-      Width = 162
-      Height = 25
+      Width = 334
+      Height = 167
       Align = alClient
       Caption = 'Update Description'
       Font.Charset = DEFAULT_CHARSET
@@ -193,6 +187,8 @@ object FormUpdate: TFormUpdate
       ParentFont = False
       Layout = tlCenter
       WordWrap = True
+      ExplicitWidth = 162
+      ExplicitHeight = 25
     end
     object LabelStatus: TLabel
       Left = 0
@@ -215,10 +211,10 @@ object FormUpdate: TFormUpdate
       ExplicitHeight = 130
     end
     object LabelVersion: TLabel
-      Left = 296
+      Left = 0
       Top = 0
-      Width = 38
-      Height = 15
+      Width = 334
+      Height = 167
       Align = alClient
       Alignment = taRightJustify
       Caption = 'Version'
@@ -229,6 +225,9 @@ object FormUpdate: TFormUpdate
       Font.Style = []
       ParentFont = False
       Layout = tlBottom
+      ExplicitLeft = 296
+      ExplicitWidth = 38
+      ExplicitHeight = 15
     end
   end
   object LayoutProgress: TEsLayout
@@ -247,8 +246,6 @@ object FormUpdate: TFormUpdate
     ParentBackground = False
     ParentColor = False
     TabOrder = 3
-    ExplicitTop = 144
-    ExplicitWidth = 456
     object ProgressBar: TEsActivityBar
       Left = 1
       Top = 1
@@ -269,7 +266,6 @@ object FormUpdate: TFormUpdate
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
-      ExplicitWidth = 454
     end
   end
   object LayoutFotterSeparator: TEsLayout
@@ -287,7 +283,5 @@ object FormUpdate: TFormUpdate
     ParentBackground = False
     ParentColor = False
     TabOrder = 4
-    ExplicitTop = 171
-    ExplicitWidth = 456
   end
 end

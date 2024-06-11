@@ -13,7 +13,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  TTurboUpdate.New
+  GlobalUpdate
    .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .KeyName('TurboUpdate.Vcl.Classic')

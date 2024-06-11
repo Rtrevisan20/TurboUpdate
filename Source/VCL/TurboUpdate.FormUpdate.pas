@@ -167,7 +167,7 @@ procedure TFormUpdate.ViewShow;
 begin
   if Application.MainForm <> Self then
    begin
-    Self.Position := poScreenCenter;  // Add by Renato Trevisan
+    Self.Position  := poScreenCenter;  // Add by Renato Trevisan
     Self.FormStyle := fsStayOnTop;
    end;
   inherited Show;

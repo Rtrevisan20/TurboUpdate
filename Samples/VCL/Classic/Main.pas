@@ -9,7 +9,6 @@ uses
   System.Variants,
 
   TurboUpdate,
-  TurboUpdate.Interfaces,
   TurboUpdate.Model.Types,
 
   Vcl.Controls,
@@ -30,9 +29,7 @@ type
     procedure ButtonCheckUpdateOldClick(Sender: TObject);
     procedure ButtonCheckUpdateCurClick(Sender: TObject);
     procedure ButtonCheckUpdateNewClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
-    FTurboUpdate : iTurboUpdate;
   public
   end;
 
@@ -45,7 +42,7 @@ implementation
 
 procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
-  FTurboUpdate
+  GlobalUpdate
    .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .KeyName('TurboUpdate.Vcl.Classic')
@@ -56,7 +53,7 @@ end;
 
 procedure TFormMain.ButtonCheckUpdateNewClick(Sender: TObject);
 begin
-  FTurboUpdate
+  GlobalUpdate
    .ExeNames(['VclApplication.exe', 'VclUpdate.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .KeyName('TurboUpdate.Vcl.Classic')
@@ -67,18 +64,13 @@ end;
 
 procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
-  FTurboUpdate
-   .ExeNames(['&ALL']) //VclApplication.exe', 'VclUpdate.exe
+  GlobalUpdate
+   .ExeNames(['&ALL']) // VclApplication.exe', 'VclUpdate.exe
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .KeyName('TurboUpdate.Vcl.Classic')
    .Version(TFileVersion.CreateForFile('1.9.3.0'))
    .Description('TurboUpdate/Vcl/Classic')
    .UpdateVCL;
-end;
-
-procedure TFormMain.FormCreate(Sender: TObject);
-begin
-  FTurboUpdate := TTurboUpdate.New;
 end;
 
 end.

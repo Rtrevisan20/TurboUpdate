@@ -26,15 +26,15 @@ uses
 
   System.Classes,
   System.SysUtils,
-  TurboUpdate.Interfaces,
 
+  TurboUpdate.FMX.Utils,
+  TurboUpdate.Interfaces,
   TurboUpdate.Model.Check,
   TurboUpdate.Model.Consts,
-  TurboUpdate.FMX.Utils,
-  TurboUpdate.VCL.Utils,
   TurboUpdate.Model.Language.Interfaces,
   TurboUpdate.Model.Types,
-  TurboUpdate.Model.Utils;
+  TurboUpdate.Model.Utils,
+  TurboUpdate.VCL.Utils;
 
 type
   TTurboUpdate = class(TInterfacedObject, iTurboUpdate)
@@ -73,14 +73,17 @@ type
     procedure UpdateFMX;
   end;
 
-implementation
+var
+  GlobalUpdate : iTurboUpdate;
 
-{ TTurboUpdate }
+implementation
 
 procedure TTurboUpdate.CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
 var
   FUpdateInfo: TUpdateInfo;
 begin
+  MSG     := THDMessageDlg.New;
+  FConsts := TFactoryConsts.New.Consts;
  if UpdateAviable then
   begin
    if
@@ -112,6 +115,8 @@ end;
 
 procedure TTurboUpdate.CheckStandalone(UpdateAviable: Boolean; Version: TFileVersion);
 begin
+  MSG     := THDMessageDlg.New;
+  FConsts := TFactoryConsts.New.Consts;
  if UpdateAviable then
   begin
    if
@@ -139,6 +144,8 @@ procedure TTurboUpdate.CheckVCL(UpdateAviable: Boolean; Version: TFileVersion);
 var
   FUpdateInfo: TUpdateInfo;
 begin
+  MSG     := THDMessageDlg.New;
+  FConsts := TFactoryConsts.New.Consts;
  if UpdateAviable then
   begin
    if
@@ -170,8 +177,7 @@ end;
 
 constructor TTurboUpdate.Create;
 begin
-  MSG     := THDMessageDlg.New;
-  FConsts := TFactoryConsts.New.Consts;
+
 end;
 
 function TTurboUpdate.Description(aValue: string): iTurboUpdate;
@@ -279,5 +285,8 @@ begin
   Result := Self;
   FVersion := aValue;
 end;
+
+initialization
+ GlobalUpdate := TTurboUpdate.New;
 
 end.

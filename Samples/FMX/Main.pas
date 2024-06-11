@@ -18,8 +18,6 @@ uses
   System.UITypes,
   System.Variants,
 
-  TurboUpdate.Model.Interfaces,
-  TurboUpdate.Interfaces,
   TurboUpdate.Model.Types;
 
 type
@@ -31,9 +29,7 @@ type
     procedure ButtonCheckUpdateCurClick(Sender: TObject);
     procedure ButtonCheckUpdateNewClick(Sender: TObject);
     procedure ButtonCheckUpdateOldClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
-    FTurboUpdate : iTurboUpdate;
   public
   end;
 var
@@ -43,7 +39,7 @@ implementation
 {$R *.fmx}
 procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
-  FTurboUpdate
+  GlobalUpdate
    .ExeNames(['FmxApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .KeyName('TurboUpdate.Fmx.Standalone')
@@ -53,7 +49,7 @@ begin
 end;
 procedure TFormMain.ButtonCheckUpdateNewClick(Sender: TObject);
 begin
-  FTurboUpdate
+  GlobalUpdate
    .ExeNames(['FmxApplication.exe'])
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .KeyName('TurboUpdate.Fmx.Standalone')
@@ -63,18 +59,13 @@ begin
 end;
 procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
-  FTurboUpdate
-   .ExeNames(['FmxApplication.exe'])
+  GlobalUpdate
+   .ExeNames(['&ALL']) //&ALL
    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
    .KeyName('TurboUpdate.Fmx.Standalone')
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.Create('1.9.3.0'))
    .UpdateFMX;
-end;
-
-procedure TFormMain.FormCreate(Sender: TObject);
-begin
-  FTurboUpdate := TTurboUpdate.New;
 end;
 
 end.
