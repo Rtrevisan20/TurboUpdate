@@ -75,3 +75,6 @@ Samples/VCL/Classic/modules/
 Samples/VCL/Classic/Temp/
 Samples/VCL/Standalone/modules/
 Samples/VCL/Standalone/Temp/
+Samples/VCL/Classic/Application
+Samples/VCL/Standalone/Application
+Samples/FMX/Application
