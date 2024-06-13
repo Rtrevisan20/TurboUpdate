@@ -6,9 +6,11 @@ object FormMain: TFormMain
   Caption = 'test stanalone (see vcl samples for classic)'
   ClientHeight = 113
   ClientWidth = 489
+  Position = OwnerFormCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object ButtonCheckUpdateOld: TButton
     Position.X = 8.000000000000000000
@@ -43,10 +45,10 @@ object FormMain: TFormMain
   object Label1: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 88.000000000000000000
-    Size.Width = 193.000000000000000000
+    Size.Width = 239.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
-    Text = 'On GitHub - version 2.0.0.0'
+    Text = 'On GitHub - Version:'
     TabOrder = 3
   end
 end

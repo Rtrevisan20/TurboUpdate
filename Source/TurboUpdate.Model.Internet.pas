@@ -12,49 +12,56 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
+{                                                                              }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.Model.Internet;
 
 interface
 
 uses
-  System.Net.HttpClient,
-  System.IniFiles,
   System.Classes,
-  System.SysUtils,
+  System.IniFiles,
+  System.Net.HttpClient,
   System.Net.UrlClient,
+  System.SysUtils,
+
   TurboUpdate.Model.Types;
 
-function GetUpdateUrl(IniFileUrl: string; Name: string): string; overload;
-function GetUpdateVersion(IniFileUrl: string; Name: string; out Version: TFileVersion): Boolean; overload;
-function GetUpdateUrl(Urls: TStringArray; AppName: string): string; overload;
-function GetUpdateVersion(Urls: TStringArray; AppName: string; out Version: TFileVersion): Boolean; overload;
+function GetUpdateUrl(AIniFileUrl: string; AKeyName: string): string; overload;
+function GetUpdateUrl(AUrls: TStringArray; AKeyName: string): string; overload;
+function GetUpdateVersion(AIniFileUrl: string; AKeyName: string;out AVersion: TFileVersion): Boolean; overload;
+function GetUpdateVersion(AUrls: TStringArray; AKeyName: string;out AVersion: TFileVersion): Boolean; overload;
+function GetUpdateVersion(AUrls: TStringArray; AKeyName: string): TFileVersion; overload;
 
 type
-  TReceiveDataEventRef = reference to procedure(Length: Int64; Progress: Int64; var Abort: Boolean);
+  TReceiveDataEventRef = reference to procedure(ALength: Int64;
+    AProgress: Int64; var AAbort: Boolean);
 
-function DowloadFile(Url: string; Path: string; DownloadProgress: TReceiveDataEventRef): Boolean;
+function DowloadFile(AUrl: string; APath: string;
+  ADownloadProgress: TReceiveDataEventRef): Boolean;
 
 var
   ProxySettings: TProxySettings;
+  FVersion: TFileVersion;
 
 implementation
 
-function GetStream(Url: string): TStream;
+function GetStream(AUrl: string): TStream;
 var
   Http: THttpClient;
   Stream: TMemoryStream;
 begin
   Result := nil;
-
   Stream := TMemoryStream.Create;
   try
     Http := THttpClient.Create;
     try
       Http.ProxySettings := ProxySettings;
       // Http.ConnectTimeout := 10 * 1000;// 10 sec
-      if Http.Get(Url, Stream).StatusCode >= 300 then
+      if Http.Get(AUrl, Stream).StatusCode >= 300 then
         FreeAndNil(Stream);
-
       Result := Stream;
     finally
       Http.Free;
@@ -64,18 +71,16 @@ begin
   end;
 end;
 
-function GetIniFile(Url: string): TMemIniFile;
+function GetIniFile(AUrl: string): TMemIniFile;
 var
   Stream: TStream;
   Strings: TStringList;
 begin
   Result := nil;
-
-  Stream := GetStream(Url);
+  Stream := GetStream(AUrl);
   if Stream = nil then
     Exit;
   try
-
     Strings := TStringList.Create;
     try
       Strings.LoadFromStream(Stream);
@@ -84,68 +89,88 @@ begin
     finally
       Strings.Free;
     end;
-
   finally
     Stream.Free;
   end;
 end;
 
-function GetUpdateUrl(IniFileUrl: string; Name: string): string;
+function GetUpdateUrl(AIniFileUrl: string; AKeyName: string): string;
 var
   Ini: TMemIniFile;
 begin
   Result := '';
-
-  Ini := GetIniFile(IniFileUrl);
+  Ini := GetIniFile(AIniFileUrl);
   if Ini = nil then
     Exit;
   try
-    Result := Ini.ReadString(Name, 'Download', '');
+    Result := Ini.ReadString(AKeyName, 'Download', '');
   finally
     Ini.Free;
   end;
 end;
 
-function GetUpdateVersion(IniFileUrl: string; Name: string; out Version: TFileVersion): Boolean;
+function GetUpdateVersion(AUrls: TStringArray; AKeyName: string): TFileVersion;
+var
+  AUrl: string;
+begin
+ if FVersion.ToString = '0.0.0.0' then
+  begin
+    for AUrl in AUrls do
+    begin
+      if AUrl.IsEmpty then
+        Exit;
+      Result := TFileVersion.Create(GetIniFile(AUrl).ReadString(AKeyName,
+        'Version', ''));
+      break;
+    end;
+  end
+  else Result := FVersion;
+end;
+
+function GetUpdateVersion(AIniFileUrl: string; AKeyName: string;
+  out AVersion: TFileVersion): Boolean;
 var
   Ini: TMemIniFile;
 begin
   Result := False;
-
-  Ini := GetIniFile(IniFileUrl);
+  Ini := GetIniFile(AIniFileUrl);
   if Ini = nil then
     Exit;
   try
-    Version := TFileVersion.Create(Ini.ReadString(Name, 'Version', ''));
+    AVersion := TFileVersion.Create(Ini.ReadString(AKeyName, 'Version', ''));
+    FVersion := TFileVersion.Create(Ini.ReadString(AKeyName, 'Version', ''));
     Result := True;
   finally
     Ini.Free;
   end;
 end;
 
-function GetUpdateUrl(Urls: TStringArray; AppName: string): string;
+function GetUpdateUrl(AUrls: TStringArray; AKeyName: string): string;
 var
-  Url: string;
+  AUrl: string;
 begin
   Result := '';
-  for Url in Urls do
+  for AUrl in AUrls do
   begin
-    Result := GetUpdateUrl(Url, AppName);
+    Result := GetUpdateUrl(AUrl, AKeyName);
     if Result <> '' then
       break;
   end;
 end;
 
-function GetUpdateVersion(Urls: TStringArray; AppName: string; out Version: TFileVersion): Boolean;
+function GetUpdateVersion(AUrls: TStringArray; AKeyName: string;
+  out AVersion: TFileVersion): Boolean;
 var
-  Url: string;
+  AUrl: string;
 begin
-  for Url in Urls do
+  for AUrl in AUrls do
   begin
-    if GetUpdateVersion(Url, AppName, Version) then
+    if GetUpdateVersion(AUrl, AKeyName, AVersion) then
+    begin
+      FVersion := AVersion;
       Exit(True);
+    end;
   end;
-
   Exit(False)
 end;
 
@@ -161,7 +186,8 @@ type
   THttpClientHook = class(TInterfacedObject, IHttpClientHook)
   private
     FOnResiveData: TReceiveDataEventRef;
-    procedure ReceiveDataProc(const Sender: TObject; AContentLength: Int64; AReadCount: Int64; var Abort: Boolean);
+    procedure ReceiveDataProc(const Sender: TObject; AContentLength: Int64;
+      AReadCount: Int64; var AAbort: Boolean);
   public
     destructor Destroy; override;
     { IHttpClientHook }
@@ -169,8 +195,7 @@ type
     function GetResiveDataProc: TReceiveDataEvent;
   end;
 
-{ THttpClientHook }
-
+  { THttpClientHook }
 destructor THttpClientHook.Destroy;
 begin
   inherited;
@@ -181,54 +206,53 @@ begin
   Result := ReceiveDataProc;
 end;
 
-procedure THttpClientHook.ReceiveDataProc(const Sender: TObject; AContentLength, AReadCount: Int64; var Abort: Boolean);
+procedure THttpClientHook.ReceiveDataProc(const Sender: TObject;
+  AContentLength, AReadCount: Int64; var AAbort: Boolean);
 begin
   if Assigned(FOnResiveData) then
-    FOnResiveData(AContentLength, AReadCount, Abort);
+    FOnResiveData(AContentLength, AReadCount, AAbort);
 end;
 
 procedure THttpClientHook.SetOnResiveData(OnResiveData: TReceiveDataEventRef);
 begin
   FOnResiveData := OnResiveData;
 end;
-
 {$HINTS OFF}
-function DowloadFile(Url: string; Path: string; DownloadProgress: TReceiveDataEventRef): Boolean;
+
+function DowloadFile(AUrl: string; APath: string;
+  ADownloadProgress: TReceiveDataEventRef): Boolean;
 var
-  Http    : THttpClient;
-  Stream  : TStream;
-  Hook    : IHttpClientHook;
+  Http: THttpClient;
+  Stream: TStream;
+  Hook: IHttpClientHook;
   Response: IHTTPResponse;
-  Time    : Cardinal;
+  Time: Cardinal;
 begin
   Result := False;
-
   Time := 0;
   Hook := THttpClientHook.Create;
-  Hook.OnResiveData :=
-  procedure(Length, Progress: Int64; var Abort: Boolean)
-  begin
-    if (Time < TThread.GetTickCount) or (Length = Progress) then
+  Hook.OnResiveData := procedure(ALength, AProgress: Int64; var AAbort: Boolean)
     begin
-      DownloadProgress(Length, Progress, Abort);
-      Time := TThread.GetTickCount + 1000 div 30;// 30 per second
+      if (Time < TThread.GetTickCount) or (ALength = AProgress) then
+      begin
+        ADownloadProgress(ALength, AProgress, AAbort);
+        Time := TThread.GetTickCount + 1000 div 30; // 30 per second
+      end;
+      // if AAbort then
+      // raise ENetHTTPException.Create('Aborted');
     end;
-    // if Abort then
-    //   raise ENetHTTPException.Create('Aborted');
-  end;
-
-  Stream := TFileStream.Create(Path, fmCreate);
+  Stream := TFileStream.Create(APath, fmCreate);
   try
     Http := THttpClient.Create;
     Http.ProxySettings := ProxySettings;
-
     Http.OnReceiveData := Hook.ResiveDataProc;
     try
-      //Http.DownloadProgressProc := DownloadProgress;
+      // Http.DownloadProgressProc := ADownloadProgress;
       // Http.ConnectTimeout := 10 * 1000;// 10 sec
       try
-        Response := Http.Get(Url, Stream);
-        Result := (Response.StatusCode <= 299) and (Response.ContentLength = Stream.Size);
+        Response := Http.Get(AUrl, Stream);
+        Result := (Response.StatusCode <= 299) and
+          (Response.ContentLength = Stream.Size);
       except
         on ENetHTTPException do
           Result := False;

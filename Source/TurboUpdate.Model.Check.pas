@@ -12,6 +12,10 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
+{                                                                              }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.Model.Check;
 
 interface
@@ -20,14 +24,15 @@ uses
   TurboUpdate.Model.Types;
 
 type
-  TUpdateCheckResultProc = reference to procedure(UpdateAviable: Boolean; Version: TFileVersion);
+  TUpdateCheckResultProc = reference to procedure(UpdateAviable: Boolean; AVersion: TFileVersion);
 
-procedure CheckUpdate(Urls: TStringArray; AppName: string;
-  UpdateCheckResultProc: TUpdateCheckResultProc); overload;
-
-procedure CheckUpdate(Urls: TStringArray; AppName: string;
-  Version: TFileVersion;
-  UpdateCheckResultProc: TUpdateCheckResultProc); overload;
+function GetVersionUpdate(AUrls: TStringArray; KeyName: string): TFileVersion;
+function CheckUpdate(AUrls: TStringArray; KeyName: string;
+                     AVersion: TFileVersion): boolean; overload;
+procedure CheckUpdate(AUrls: TStringArray; KeyName: string;
+                      AUpdateCheckResultProc: TUpdateCheckResultProc); overload;
+procedure CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion;
+                      AUpdateCheckResultProc: TUpdateCheckResultProc); overload;
 
 implementation
 
@@ -37,8 +42,33 @@ uses
 var
   IsChecking: Boolean = False;
 
-procedure CheckUpdate(Urls: TStringArray; AppName: string;
-  Version: TFileVersion; UpdateCheckResultProc: TUpdateCheckResultProc);
+function GetVersionUpdate(AUrls: TStringArray; KeyName: string): TFileVersion;
+begin
+  Result := GetUpdateVersion(AUrls, KeyName);
+end;
+
+function CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion): boolean;
+var
+  LUrl          : string;
+  LUpdateVersion: TFileVersion;
+begin
+ Result := False;
+ if IsChecking then
+    Exit(False);
+ IsChecking := True;
+  try
+   for LUrl in AUrls do
+    begin
+     Result := GetUpdateVersion(LUrl, KeyName, LUpdateVersion);
+      break;
+    end;
+  finally
+    IsChecking := False;
+  end;
+end;
+
+procedure CheckUpdate(AUrls: TStringArray; KeyName: string;
+  AVersion: TFileVersion; AUpdateCheckResultProc: TUpdateCheckResultProc);
 begin
   if IsChecking then
     Exit;
@@ -51,17 +81,17 @@ begin
     begin
      IsChecking := True;
       try
-        for Url in Urls do
+       for Url in AUrls do
         begin
-          if GetUpdateVersion(Url, AppName, UpdateVersion) then
+         if GetUpdateVersion(Url, KeyName, UpdateVersion) then
           begin
             TThread.Synchronize(nil,
-              procedure
+             procedure
               begin
-                if UpdateVersion > Version then
-                  UpdateCheckResultProc(True, UpdateVersion)
+                if UpdateVersion > AVersion then
+                  AUpdateCheckResultProc(True, UpdateVersion)
                 else
-                  UpdateCheckResultProc(False, UpdateVersion);
+                  AUpdateCheckResultProc(False, UpdateVersion);
               end);
             break;
           end;
@@ -72,11 +102,11 @@ begin
     end).Start;
 end;
 
-procedure CheckUpdate(Urls: TStringArray; AppName: string;
-UpdateCheckResultProc: TUpdateCheckResultProc);
+procedure CheckUpdate(AUrls: TStringArray; KeyName: string;
+AUpdateCheckResultProc: TUpdateCheckResultProc);
 begin
-  CheckUpdate(Urls, AppName, TFileVersion.CreateForFile(ParamStr(0)),
-    UpdateCheckResultProc);
+  CheckUpdate(AUrls, KeyName, TFileVersion.CreateForFile(ParamStr(0)),
+    AUpdateCheckResultProc);
 end;
 
 end.

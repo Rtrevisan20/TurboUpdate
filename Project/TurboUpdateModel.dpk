@@ -29,8 +29,6 @@ package TurboUpdateModel;
 
 requires
   rtl,
-  EsVclComponents,
-  EsVclCore,
   HDMessageDlg;
 
 contains

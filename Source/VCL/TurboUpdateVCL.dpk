@@ -31,9 +31,9 @@ requires
   rtl,
   vcl,
   vclimg,
+  TurboUpdateModel,
   EsVclComponents,
-  EsVclCore,
-  TurboUpdateModel;
+  EsVclCore;
 
 contains
   TurboUpdate.FormUpdate in 'TurboUpdate.FormUpdate.pas' {FormUpdate},

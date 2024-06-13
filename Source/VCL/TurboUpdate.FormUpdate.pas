@@ -47,23 +47,23 @@ uses
 
 type
   TFormUpdate = class(TForm, IUpdateView)
-    Image: TEsImageControl;
-    LayoutFotter: TEsLayout;
-    ProgressBar: TEsActivityBar;
-    ButtonCancel: TButton;
-    LabelStatus: TLabel;
-    LayoutMain: TEsLayout;
-    LabelDescription: TLabel;
-    LayoutProgress: TEsLayout;
+    Image                : TEsImageControl;
+    LayoutFotter         : TEsLayout;
+    ProgressBar          : TEsActivityBar;
+    ButtonCancel         : TButton;
+    LabelStatus          : TLabel;
+    LayoutMain           : TEsLayout;
+    LabelDescription     : TLabel;
+    LayoutProgress       : TEsLayout;
     LayoutFotterSeparator: TEsLayout;
-    LabelVersion: TLabel;
-    LinkLabelTurboUpdate: TLinkLabel;
+    LabelVersion         : TLabel;
+    LinkLabelTurboUpdate : TLinkLabel;
     procedure ButtonCancelClick(Sender: TObject);
     procedure LinkLabelTurboUpdateLinkClick(Sender: TObject; const Link: string; LinkType: TSysLinkType);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
-    Model: IUpdateModel;
-    Msg : iHDMessageDlg;
+    Model   : IUpdateModel;
+    Msg     : iHDMessageDlg;
     FConsts : IMessageConsts;
   public
     { IUpdateView }
@@ -107,8 +107,8 @@ end;
 procedure TFormUpdate.Progress(Progress, Length: Integer);
 begin
   ProgressBar.AnimationType := TActivityAnimationType.Progress;
-  ProgressBar.Max := Length;
-  ProgressBar.Position := Progress;
+  ProgressBar.Max           := Length;
+  ProgressBar.Position      := Progress;
 end;
 procedure TFormUpdate.SetDescription(const Value: string);
 begin

@@ -66,6 +66,8 @@ type
     function Version(aValue: TFileVersion)                : iTurboUpdate;
     function ExecUpdateApp(aValue: string = 'Update.exe') : iTurboUpdate;
     function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
+    function ChekUpdate                                   : Boolean;
+    function GetVersion                                   : TFileVersion;
     procedure UpdateThreadVCL;
     procedure UpdateThreadFMX;
     procedure Standalone;
@@ -175,6 +177,11 @@ begin
     .DisplayMessage;
 end;
 
+function TTurboUpdate.ChekUpdate: boolean;
+begin
+  Result := CheckUpdate(FUrls, FKeyName, FVersion);
+end;
+
 constructor TTurboUpdate.Create;
 begin
 
@@ -196,6 +203,11 @@ function TTurboUpdate.ExeNames(aValue: TStringArray): iTurboUpdate;
 begin
   Result := self;
   FExeNames := aValue;
+end;
+
+function TTurboUpdate.GetVersion: TFileVersion;
+begin
+  Result := GetVersionUpdate(FUrls, FKeyName);
 end;
 
 function TTurboUpdate.KillTaskApp(aValue: TFileName): iTurboUpdate;

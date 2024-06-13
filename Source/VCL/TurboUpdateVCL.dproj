@@ -83,9 +83,9 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="vclimg.dcp"/>
+        <DCCReference Include="TurboUpdateModel.dcp"/>
         <DCCReference Include="EsVclComponents.dcp"/>
         <DCCReference Include="EsVclCore.dcp"/>
-        <DCCReference Include="TurboUpdateModel.dcp"/>
         <DCCReference Include="TurboUpdate.FormUpdate.pas">
             <Form>FormUpdate</Form>
             <FormType>dfm</FormType>

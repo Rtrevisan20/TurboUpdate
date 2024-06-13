@@ -36,6 +36,8 @@ type
     function Version(aValue: TFileVersion)                : iTurboUpdate;
     function ExecUpdateApp(aValue: string = 'Update.exe') : iTurboUpdate;
     function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
+    function ChekUpdate                                   : boolean;
+    function GetVersion                                   : TFileVersion;
     procedure UpdateThreadVCL;
     procedure UpdateThreadFMX;
     procedure Standalone;

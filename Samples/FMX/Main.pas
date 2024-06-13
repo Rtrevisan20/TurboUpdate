@@ -29,6 +29,7 @@ type
     procedure ButtonCheckUpdateCurClick(Sender: TObject);
     procedure ButtonCheckUpdateNewClick(Sender: TObject);
     procedure ButtonCheckUpdateOldClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
   public
   end;
@@ -66,6 +67,15 @@ begin
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.Create('1.9.3.0'))
    .UpdateFMX;
+end;
+
+procedure TFormMain.FormShow(Sender: TObject);
+begin
+  Label1.Text := 'On GitHub - Version: ' +
+   GlobalUpdate
+    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+    .KeyName('TurboUpdate.Fmx.Standalone')
+    .GetVersion.ToString;
 end;
 
 end.
