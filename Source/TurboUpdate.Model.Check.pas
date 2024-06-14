@@ -59,8 +59,11 @@ begin
   try
    for LUrl in AUrls do
     begin
-     Result := GetUpdateVersion(LUrl, KeyName, LUpdateVersion);
-      break;
+     GetUpdateVersion(LUrl, KeyName, LUpdateVersion);
+     if AVersion < LUpdateVersion then
+      Result := True else
+      Result := False;
+     break;
     end;
   finally
     IsChecking := False;

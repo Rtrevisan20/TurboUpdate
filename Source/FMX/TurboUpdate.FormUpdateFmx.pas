@@ -12,7 +12,12 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
+{                                                                              }
+{Modidicado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.FormUpdateFmx;
+
 interface
 
 uses
@@ -63,10 +68,9 @@ type
     procedure LabelTurboUpdateClick(Sender: TObject);
   private
     Model: IUpdateModel;
-    Msg : iHDMessageDlg;
-    FConsts : IMessageConsts;
+    Msg: iHDMessageDlg;
+    FConsts: IMessageConsts;
   public
-    { IUpdateView }
     procedure SetVersion(const Value: string);
     procedure SetDescription(const Value: string);
     procedure SetStatus(const Value: string);
@@ -77,47 +81,56 @@ type
     function ShowErrorMessage(Message: string): Boolean;
     procedure Progress(Progress, Length: Integer);
     procedure IUpdateView.Close = ViewClose;
-      procedure ViewClose;
+    procedure ViewClose;
     procedure IUpdateView.Show = ViewShow;
-      procedure ViewShow;
+    procedure ViewShow;
   end;
+
 implementation
+
 uses
   Winapi.ShellApi;
 {$R *.fmx}
 
-{ TFormUpdateFmx }
 procedure TFormUpdateFmx.ButtonCancelClick(Sender: TObject);
 begin
   Model.Cancel;
 end;
+
 procedure TFormUpdateFmx.ViewClose;
 begin
   OnClose := nil;
   inherited Close;
 end;
+
 procedure TFormUpdateFmx.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := TCloseAction.caNone;
   Model.Cancel;
 end;
+
 procedure TFormUpdateFmx.LabelTurboUpdateClick(Sender: TObject);
 begin
-  ShellExecute(0, 'Open', PChar('http://github.com/errorcalc/TurboUpdate'), nil, nil, 0);
+  ShellExecute(0, 'Open', PChar('http://github.com/errorcalc/TurboUpdate'),
+    nil, nil, 0);
 end;
+
 procedure TFormUpdateFmx.Progress(Progress, Length: Integer);
 begin
   ProgressBar.Max := Length;
   ProgressBar.Value := Progress;
 end;
+
 procedure TFormUpdateFmx.SetDescription(const Value: string);
 begin
   LabelDescription.Text := Value;
 end;
+
 procedure TFormUpdateFmx.SetModel(Model: IUpdateModel);
 begin
   Self.Model := Model;
 end;
+
 procedure TFormUpdateFmx.SetPngRes(const Value: string);
 var
   Stream: TResourceStream;
@@ -129,10 +142,12 @@ begin
     Stream.Free;
   end;
 end;
+
 procedure TFormUpdateFmx.SetStatus(const Value: string);
 begin
   LabelState.Text := Value;
 end;
+
 procedure TFormUpdateFmx.SetUpdateState(Value: TUpdateState);
 begin
   case Value of
@@ -157,38 +172,38 @@ begin
       end;
   end;
 end;
+
 procedure TFormUpdateFmx.SetVersion(const Value: string);
 begin
   LabelVersion.Text := Value;
 end;
+
 procedure TFormUpdateFmx.ViewShow;
 begin
-  Self.Position := TFormPosition.ScreenCenter;  // Add by Renato Trevisan
+  Self.Position := TFormPosition.ScreenCenter; // Add by Renato Trevisan
   inherited Show;
 end;
+
 function TFormUpdateFmx.ShowErrorMessage(Message: string): Boolean;
 begin
   FConsts := TFactoryConsts.New.Consts;
-  Msg := THDMessageDlg.New;
-  Result :=
-   Msg
-    .MsgTitle(FConsts.MsgTitle)
-    .MsgQuestion('')
-    .MsgBody(Message)
-    .MsgIcon(TiError)
-    .MsgType(TyQuestion)
-    .DisplayQuestion;  // add by Renato Trevisan 12-1-24
+  Msg     := THDMessageDlg.New;
+  Result  := Msg.MsgTitle(FConsts.MsgTitle)
+              .MsgQuestion('')
+              .MsgBody(Message)
+              .MsgIcon(TiError)
+              .MsgType(TyQuestion)
+              .DisplayQuestion;
+  // add by Renato Trevisan 12-1-24
 end;
+
 procedure TFormUpdateFmx.ShowMessage(Message: string);
 begin
   FConsts := TFactoryConsts.New.Consts;
   Msg := THDMessageDlg.New;
-   Msg
-    .MsgTitle(FConsts.MsgTitle)
-    .MsgQuestion('')
-    .MsgBody(Message)
-    .MsgIcon(TiMessage)
-    .MsgType(TyOK)
-    .DisplayMessage; // add by Renato Trevisan 12-1-24
+  Msg.MsgTitle(FConsts.MsgTitle).MsgQuestion('').MsgBody(Message)
+    .MsgIcon(TiMessage).MsgType(TyOK).DisplayMessage;
+  // add by Renato Trevisan 12-1-24
 end;
+
 end.
