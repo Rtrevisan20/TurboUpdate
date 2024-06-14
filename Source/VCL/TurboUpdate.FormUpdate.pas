@@ -182,8 +182,8 @@ begin
     .MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Message)
-    .MsgIcon(iError)
-    .MsgType(tQuestion)
+    .MsgIcon(TiError)
+    .MsgType(TyQuestion)
     .DisplayQuestion;  // add by Renato Trevisan 12-1-24
 end;
 procedure TFormUpdate.ShowMessage(Message: string);
@@ -194,8 +194,8 @@ begin
     .MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Message)
-    .MsgIcon(iMessage)
-    .MsgType(tOK)
+    .MsgIcon(TiMessage)
+    .MsgType(TyOK)
     .DisplayMessage; // add by Renato Trevisan 12-1-24
 end;
 procedure TFormUpdate.ViewClose;

@@ -92,8 +92,8 @@ begin
     MSG.MsgTitle(FConsts.MsgTitle)
      .MsgQuestion(FConsts.MsgQuestion)
      .MsgBody(Format(FConsts.MsgBodyUpdateVersion + FConsts.Version, [Version.ToString]))
-     .MsgIcon(iQuestion)
-     .MsgType(tQuestion)
+     .MsgIcon(TiQuestion)
+     .MsgType(TyQuestion)
      .DisplayQuestion
    then
     begin
@@ -110,8 +110,8 @@ begin
    MSG.MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Format(FConsts.MsgBodyLastVersion + FConsts.Version, [Version.ToString]))
-    .MsgIcon(iMessage)
-    .MsgType(tOK)
+    .MsgIcon(TiMessage)
+    .MsgType(TyOK)
     .DisplayMessage;
 end;
 
@@ -125,8 +125,8 @@ begin
     MSG.MsgTitle(FConsts.MsgTitle)
      .MsgQuestion(FConsts.MsgQuestion)
      .MsgBody(Format(FConsts.MsgBodyUpdateVersion + FConsts.Version, [Version.ToString]))
-     .MsgIcon(iQuestion)
-     .MsgType(tQuestion)
+     .MsgIcon(TiQuestion)
+     .MsgType(TyQuestion)
      .DisplayQuestion
    then
     begin
@@ -137,8 +137,8 @@ begin
     MSG.MsgTitle(FConsts.MsgTitle)
      .MsgQuestion('')
      .MsgBody(Format(FConsts.MsgBodyLastVersion + FConsts.Version, [Version.ToString]))
-     .MsgIcon(iMessage)
-     .MsgType(tOK)
+     .MsgIcon(TiMessage)
+     .MsgType(TyOK)
      .DisplayMessage;
 end;
 
@@ -154,8 +154,8 @@ begin
     MSG.MsgTitle(FConsts.MsgTitle)
      .MsgQuestion(FConsts.MsgQuestion)
      .MsgBody(Format(FConsts.MsgBodyUpdateVersion + FConsts.Version, [Version.ToString]))
-     .MsgIcon(iQuestion)
-     .MsgType(tQuestion)
+     .MsgIcon(TiQuestion)
+     .MsgType(TyQuestion)
      .DisplayQuestion
    then
     begin
@@ -172,8 +172,8 @@ begin
    MSG.MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Format(FConsts.MsgBodyLastVersion + FConsts.Version, [Version.ToString]))
-    .MsgIcon(iMessage)
-    .MsgType(tOK)
+    .MsgIcon(TiMessage)
+    .MsgType(TyOK)
     .DisplayMessage;
 end;
 
