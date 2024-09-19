@@ -12,7 +12,12 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
+{                                                                              }
+{Modificado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.FormUpdate;
+
 interface
 
 uses
@@ -47,19 +52,20 @@ uses
 
 type
   TFormUpdate = class(TForm, IUpdateView)
-    Image                : TEsImageControl;
-    LayoutFotter         : TEsLayout;
-    ProgressBar          : TEsActivityBar;
-    ButtonCancel         : TButton;
-    LabelStatus          : TLabel;
-    LayoutMain           : TEsLayout;
-    LabelDescription     : TLabel;
-    LayoutProgress       : TEsLayout;
-    LayoutFotterSeparator: TEsLayout;
-    LabelVersion         : TLabel;
-    LinkLabelTurboUpdate : TLinkLabel;
+    Image                 : TEsImageControl;
+    ProgressBar           : TEsActivityBar;
+    LayoutFotter          : TEsLayout;
+    LayoutMain            : TEsLayout;
+    LayoutProgress        : TEsLayout;
+    LayoutFotterSeparator : TEsLayout;
+    LabelDescription      : TLabel;
+    ButtonCancel          : TButton;
+    LabelStatus           : TLabel;
+    LabelVersion          : TLabel;
+    LinkLabelTurboUpdate  : TLinkLabel;
     procedure ButtonCancelClick(Sender: TObject);
-    procedure LinkLabelTurboUpdateLinkClick(Sender: TObject; const Link: string; LinkType: TSysLinkType);
+    procedure LinkLabelTurboUpdateLinkClick(Sender: TObject;
+              const Link: string; LinkType: TSysLinkType);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     Model   : IUpdateModel;
@@ -90,34 +96,39 @@ uses
 
 {$R *.dfm}
 
-{ TFormUpdate }
 procedure TFormUpdate.ButtonCancelClick(Sender: TObject);
 begin
   Model.Cancel;
 end;
+
 procedure TFormUpdate.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Model.Cancel;
   Action := caNone;
 end;
+
 procedure TFormUpdate.LinkLabelTurboUpdateLinkClick(Sender: TObject; const Link: string; LinkType: TSysLinkType);
 begin
   ShellExecute(0, 'Open', PChar(Link), nil, nil, 0);
 end;
+
 procedure TFormUpdate.Progress(Progress, Length: Integer);
 begin
   ProgressBar.AnimationType := TActivityAnimationType.Progress;
   ProgressBar.Max           := Length;
   ProgressBar.Position      := Progress;
 end;
+
 procedure TFormUpdate.SetDescription(const Value: string);
 begin
   LabelDescription.Caption := Value;
 end;
+
 procedure TFormUpdate.SetModel(Model: IUpdateModel);
 begin
   Self.Model := Model;
 end;
+
 procedure TFormUpdate.SetPngRes(const Value: string);
 var
   Png: TPngImage;
@@ -130,10 +141,12 @@ begin
     Png.Free;
   end;
 end;
+
 procedure TFormUpdate.SetStatus(const Value: string);
 begin
   LabelStatus.Caption := Value;
 end;
+
 procedure TFormUpdate.SetUpdateState(Value: TUpdateState);
 begin
   case Value of
@@ -150,8 +163,8 @@ begin
       end;
     TUpdateState.Unpacking:
       begin
-        ButtonCancel.Enabled := False;
         ProgressBar.AnimationType := TActivityAnimationType.Progress;
+        ButtonCancel.Enabled := False;
       end;
     TUpdateState.Done:
       begin
@@ -159,10 +172,12 @@ begin
       end;
   end;
 end;
+
 procedure TFormUpdate.SetVersion(const Value: string);
 begin
   LabelVersion.Caption := Value;
 end;
+
 procedure TFormUpdate.ViewShow;
 begin
   if Application.MainForm <> Self then
@@ -172,13 +187,13 @@ begin
    end;
   inherited Show;
 end;
+
 function TFormUpdate.ShowErrorMessage(Message: string): Boolean;
 var
  Msg : iHDMessageDlg;
 begin
   FConsts := TFactoryConsts.New.Consts;
-  Result :=
-   Msg
+  Result  := Msg
     .MsgTitle(FConsts.MsgTitle)
     .MsgQuestion('')
     .MsgBody(Message)
@@ -186,21 +201,24 @@ begin
     .MsgType(TyQuestion)
     .DisplayQuestion;  // add by Renato Trevisan 12-1-24
 end;
+
 procedure TFormUpdate.ShowMessage(Message: string);
 begin
   FConsts := TFactoryConsts.New.Consts;
   Msg := THDMessageDlg.New;
-   Msg
-    .MsgTitle(FConsts.MsgTitle)
-    .MsgQuestion('')
-    .MsgBody(Message)
-    .MsgIcon(TiMessage)
-    .MsgType(TyOK)
-    .DisplayMessage; // add by Renato Trevisan 12-1-24
+  Msg
+   .MsgTitle(FConsts.MsgTitle)
+   .MsgQuestion('')
+   .MsgBody(Message)
+   .MsgIcon(TiMessage)
+   .MsgType(TyOK)
+   .DisplayMessage; // add by Renato Trevisan 12-1-24
 end;
+
 procedure TFormUpdate.ViewClose;
 begin
   OnClose := nil;
   inherited Close;
 end;
+
 end.

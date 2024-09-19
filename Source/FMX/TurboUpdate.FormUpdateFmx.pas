@@ -48,28 +48,28 @@ uses
 
 type
   TFormUpdateFmx = class(TForm, IUpdateView)
-    LayoutMain: TLayout;
-    LayoutFotter: TLayout;
-    ButtonCancel: TButton;
-    LineFotterSeparator: TLine;
-    ProgressBar: TProgressBar;
-    LayoutImage: TLayout;
-    Image: TImage;
-    LayoutInfo: TLayout;
-    LabelDescription: TLabel;
-    LabelState: TLabel;
-    LabelVersion: TLabel;
-    LayoutForm: TLayout;
-    LabelWaiting: TLabel;
-    LayoutProgress: TLayout;
-    LabelTurboUpdate: TLabel;
+    LayoutMain          : TLayout;
+    LayoutFotter        : TLayout;
+    ButtonCancel        : TButton;
+    LineFotterSeparator : TLine;
+    ProgressBar         : TProgressBar;
+    LayoutImage         : TLayout;
+    Image               : TImage;
+    LayoutInfo          : TLayout;
+    LabelDescription    : TLabel;
+    LabelState          : TLabel;
+    LabelVersion        : TLabel;
+    LayoutForm          : TLayout;
+    LabelWaiting        : TLabel;
+    LayoutProgress      : TLayout;
+    LabelTurboUpdate    : TLabel;
     procedure ButtonCancelClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure LabelTurboUpdateClick(Sender: TObject);
   private
-    Model: IUpdateModel;
-    Msg: iHDMessageDlg;
-    FConsts: IMessageConsts;
+    Model   : IUpdateModel;
+    Msg     : iHDMessageDlg;
+    FConsts : IMessageConsts;
   public
     procedure SetVersion(const Value: string);
     procedure SetDescription(const Value: string);

@@ -33,8 +33,7 @@ uses
   TurboUpdate.Model.Consts,
   TurboUpdate.Model.Language.Interfaces,
   TurboUpdate.Model.Types,
-  TurboUpdate.Model.Utils,
-  TurboUpdate.VCL.Utils;
+  TurboUpdate.Model.Utils;
 
 type
   TTurboUpdate = class(TInterfacedObject, iTurboUpdate)
@@ -50,7 +49,6 @@ type
     FVersion        : TFileVersion;
     FExecUpdateApp  : string;
     FKillTaskApp    : TFileName;
-    procedure CheckVCL(UpdateAviable: Boolean; Version: TFileVersion);
     procedure CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
     procedure CheckStandalone(UpdateAviable: Boolean; Version: TFileVersion);
   public
@@ -68,10 +66,8 @@ type
     function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
     function ChekUpdate                                   : Boolean;
     function GetVersion                                   : TFileVersion;
-    procedure UpdateThreadVCL;
     procedure UpdateThreadFMX;
     procedure Standalone;
-    procedure UpdateVCL;
     procedure UpdateFMX;
   end;
 
@@ -140,41 +136,6 @@ begin
      .MsgIcon(TiMessage)
      .MsgType(TyOK)
      .DisplayMessage;
-end;
-
-procedure TTurboUpdate.CheckVCL(UpdateAviable: Boolean; Version: TFileVersion);
-var
-  FUpdateInfo: TUpdateInfo;
-begin
-  MSG     := THDMessageDlg.New;
-  FConsts := TFactoryConsts.New.Consts;
- if UpdateAviable then
-  begin
-   if
-    MSG.MsgTitle(FConsts.MsgTitle)
-     .MsgQuestion(FConsts.MsgQuestion)
-     .MsgBody(Format(FConsts.MsgBodyUpdateVersion + FConsts.Version, [Version.ToString]))
-     .MsgIcon(TiQuestion)
-     .MsgType(TyQuestion)
-     .DisplayQuestion
-   then
-    begin
-     FUpdateInfo             := Default(TUpdateInfo);
-     FUpdateInfo.Urls        := FUrls;
-     FUpdateInfo.ExeNames    := FExeNames;
-     FUpdateInfo.KeyName     := FKeyName;
-     FUpdateInfo.Description := FDescription;
-     FUpdateInfo.RootPath    := FRootPath;
-     FUpdateInfo.PngRes      := FPngRes;
-     TurboUpdate.VCL.Utils.VCLUpdate(FUpdateInfo);
-    end;
-  end else
-   MSG.MsgTitle(FConsts.MsgTitle)
-    .MsgQuestion('')
-    .MsgBody(Format(FConsts.MsgBodyLastVersion + FConsts.Version, [Version.ToString]))
-    .MsgIcon(TiMessage)
-    .MsgType(TyOK)
-    .DisplayMessage;
 end;
 
 function TTurboUpdate.ChekUpdate: boolean;
@@ -266,24 +227,6 @@ begin
   FUpdateInfo.RootPath    := FRootPath;
   FUpdateInfo.PngRes      := FPngRes;
   FMXUpdate(FUpdateInfo);
-end;
-
-procedure TTurboUpdate.UpdateThreadVCL;
-var
-  FUpdateInfo: TUpdateInfo;
-begin
-  FUpdateInfo.Urls        := FUrls;
-  FUpdateInfo.ExeNames    := FExeNames;
-  FUpdateInfo.KeyName     := FKeyName;
-  FUpdateInfo.Description := FDescription;
-  FUpdateInfo.RootPath    := FRootPath;
-  FUpdateInfo.PngRes      := FPngRes;
-  VCLUpdate(FUpdateInfo);
-end;
-
-procedure TTurboUpdate.UpdateVCL;
-begin
-  CheckUpdate(FUrls, FKeyName, FVersion, CheckVCL);
 end;
 
 function TTurboUpdate.Urls(aValue: TStringArray): iTurboUpdate;

@@ -17,7 +17,7 @@
 {Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
 {******************************************************************************}
 unit TurboUpdate.Model.Consts;
-{$I \Language.inc}
+{$I .\Language.inc}
 
 interface
 
@@ -43,8 +43,6 @@ type
 
 implementation
 
-{ TFactoryConsts }
-
 function TFactoryConsts.Consts: IMessageConsts;
 begin
 {$IFDEF EN-Us}
@@ -56,6 +54,7 @@ begin
   FConsts := TMessageConstsPTbr.New;
   Result  := FConsts;
 {$ENDIF}
+
 end;
 
 constructor TFactoryConsts.Create;

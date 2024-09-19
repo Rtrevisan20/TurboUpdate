@@ -38,6 +38,7 @@ object FormUpdateFmx: TFormUpdateFmx
         Size.PlatformDefault = False
         TabOrder = 0
         Text = 'Cancel'
+        TextSettings.Trimming = None
         OnClick = ButtonCancelClick
       end
       object LabelTurboUpdate: TLabel

@@ -12,8 +12,11 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
+{                                                                              }
+{Modificado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
+{******************************************************************************}
 unit TurboUpdate.Update;
-
 interface
 
 uses
@@ -39,7 +42,6 @@ type
 
 implementation
 
-{ TVclUpdateThread }
 function TVclUpdateThread.CreateView: TCustomForm;
 begin
   Application.CreateForm(TFormUpdate, Result);

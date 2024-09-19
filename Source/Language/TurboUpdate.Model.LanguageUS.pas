@@ -53,8 +53,6 @@ type
 
 implementation
 
-{ TMessageConstsUS }
-
 function TMessageConstsUS.ConnectionError: string;
 begin
   Result := 'Connection Error, Please Check Your Internet Connection, Try Again?';

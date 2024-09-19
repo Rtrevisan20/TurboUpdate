@@ -9,9 +9,6 @@
         <Projects Include="..\Source\FMX\TurboUpdateFMX.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\Source\VCL\TurboUpdateVCL.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="TurboUpdateCore.dproj">
             <Dependencies/>
         </Projects>
@@ -41,15 +38,6 @@
     <Target Name="TurboUpdateFMX:Make">
         <MSBuild Projects="..\Source\FMX\TurboUpdateFMX.dproj" Targets="Make"/>
     </Target>
-    <Target Name="TurboUpdateVCL">
-        <MSBuild Projects="..\Source\VCL\TurboUpdateVCL.dproj"/>
-    </Target>
-    <Target Name="TurboUpdateVCL:Clean">
-        <MSBuild Projects="..\Source\VCL\TurboUpdateVCL.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="TurboUpdateVCL:Make">
-        <MSBuild Projects="..\Source\VCL\TurboUpdateVCL.dproj" Targets="Make"/>
-    </Target>
     <Target Name="TurboUpdateCore">
         <MSBuild Projects="TurboUpdateCore.dproj"/>
     </Target>
@@ -60,13 +48,13 @@
         <MSBuild Projects="TurboUpdateCore.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="TurboUpdateModel;TurboUpdateFMX;TurboUpdateVCL;TurboUpdateCore"/>
+        <CallTarget Targets="TurboUpdateModel;TurboUpdateFMX;TurboUpdateCore"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="TurboUpdateModel:Clean;TurboUpdateFMX:Clean;TurboUpdateVCL:Clean;TurboUpdateCore:Clean"/>
+        <CallTarget Targets="TurboUpdateModel:Clean;TurboUpdateFMX:Clean;TurboUpdateCore:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="TurboUpdateModel:Make;TurboUpdateFMX:Make;TurboUpdateVCL:Make;TurboUpdateCore:Make"/>
+        <CallTarget Targets="TurboUpdateModel:Make;TurboUpdateFMX:Make;TurboUpdateCore:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

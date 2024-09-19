@@ -38,10 +38,8 @@ type
     function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
     function ChekUpdate                                   : boolean;
     function GetVersion                                   : TFileVersion;
-    procedure UpdateThreadVCL;
     procedure UpdateThreadFMX;
     procedure Standalone;
-    procedure UpdateVCL;
     procedure UpdateFMX;
   end;
 

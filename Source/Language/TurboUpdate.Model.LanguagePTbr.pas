@@ -33,27 +33,25 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    class function New: IMessageConsts;
-    function WaitingStatus: string;
-    function DownloadingStatus: string;
-    function RenamingFilesStatus: string;
-    function UnpackingStatus: string;
-    function DoneStatus: string;
-    function ConnectionError: string;
-    function DownloadError: string;
-    function CorruptedFilesError: string;
-    function DoneMessage: string;
-    function DoneMessageRestart : string;
-    function Version: string;
-    function MsgTitle: string;
-    function MsgQuestion: string;
-    function MsgBodyLastVersion: string;
+    class function New            : IMessageConsts;
+    function WaitingStatus        : string;
+    function DownloadingStatus    : string;
+    function RenamingFilesStatus  : string;
+    function UnpackingStatus      : string;
+    function DoneStatus           : string;
+    function ConnectionError      : string;
+    function DownloadError        : string;
+    function CorruptedFilesError  : string;
+    function DoneMessage          : string;
+    function DoneMessageRestart   : string;
+    function Version              : string;
+    function MsgTitle             : string;
+    function MsgQuestion          : string;
+    function MsgBodyLastVersion   : string;
     function MsgBodyUpdateVersion : string;
   end;
 
 implementation
-
-{ TMessageConstsPTbr }
 
 function TMessageConstsPTbr.ConnectionError: string;
 begin

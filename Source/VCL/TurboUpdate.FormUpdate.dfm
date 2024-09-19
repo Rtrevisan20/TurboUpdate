@@ -175,8 +175,8 @@ object FormUpdate: TFormUpdate
     object LabelDescription: TLabel
       Left = 0
       Top = 0
-      Width = 162
-      Height = 25
+      Width = 334
+      Height = 167
       Align = alClient
       Caption = 'Update Description'
       Font.Charset = DEFAULT_CHARSET
@@ -187,6 +187,8 @@ object FormUpdate: TFormUpdate
       ParentFont = False
       Layout = tlCenter
       WordWrap = True
+      ExplicitWidth = 162
+      ExplicitHeight = 25
     end
     object LabelStatus: TLabel
       Left = 0
@@ -209,10 +211,10 @@ object FormUpdate: TFormUpdate
       ExplicitHeight = 130
     end
     object LabelVersion: TLabel
-      Left = 296
+      Left = 0
       Top = 0
-      Width = 38
-      Height = 15
+      Width = 334
+      Height = 167
       Align = alClient
       Alignment = taRightJustify
       Caption = 'Version'
@@ -223,6 +225,9 @@ object FormUpdate: TFormUpdate
       Font.Style = []
       ParentFont = False
       Layout = tlBottom
+      ExplicitLeft = 296
+      ExplicitWidth = 38
+      ExplicitHeight = 15
     end
   end
   object LayoutProgress: TEsLayout

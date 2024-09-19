@@ -12,10 +12,7 @@
 { You can order developing vcl/fmx components, please submit requests to mail. }
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
-{                                                                              }
-{Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
-{added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
-{******************************************************************************}
+
 unit TurboUpdate.VCL.Utils;
 
 interface

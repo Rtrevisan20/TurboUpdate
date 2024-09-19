@@ -31,8 +31,7 @@ package TurboUpdateCore;
 requires
   rtl,
   TurboUpdateModel,
-  TurboUpdateFMX,
-  TurboUpdateVCL;
+  TurboUpdateFMX;
 
 contains
   TurboUpdate in '..\Source\TurboUpdate.pas',

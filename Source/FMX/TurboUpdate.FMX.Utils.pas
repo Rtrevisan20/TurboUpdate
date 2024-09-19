@@ -13,8 +13,8 @@
 { Вы можете заказать разработку VCL/FMX компонента на заказ.                   }
 {******************************************************************************}
 {                                                                              }
-{Adicionado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
-{added by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate      }
+{Modificado por Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate}
+{Modified by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate   }
 {******************************************************************************}
 unit TurboUpdate.FMX.Utils;
 
