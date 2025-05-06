@@ -1,8 +1,8 @@
 ﻿[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLnBhcw==]
 Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.pas
-CursorX=26
-CursorY=142
-TopLine=141
+CursorX=56
+CursorY=22
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -27,4 +27,95 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\Recursos GitHub\HDTurboUpdate\Project\TurboUpdateCore.dpk
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkNoZWNray5wYXM=]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Checkk.pas
+CursorX=38
+CursorY=22
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Checkk.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcUHJvamVjdFxUdXJib1VwZGF0ZUNvcmUu
+ZHBr]
+Module=D:\Recursos GitHub\HDTurboUpdate\Project\TurboUpdateCore.dpk
+CursorX=30
+CursorY=40
+TopLine=16
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Project\TurboUpdateCore.dpk
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkNoZWNrLnBhcw==]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Check.pas
+CursorX=38
+CursorY=22
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Check.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcUHJvamVjdFxUdXJib1VwZGF0ZUNvcmUu
+ZHBr]
+Module=D:\Recursos GitHub\HDTurboUpdate\Project\TurboUpdateCore.dpk
+CursorX=58
+CursorY=38
+TopLine=16
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Project\TurboUpdateCore.dpk
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLkludGVy
+ZmFjZXMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+CursorX=1
+CursorY=25
+TopLine=16
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkNoZWNrcy5wYXM=]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Checks.pas
+CursorX=1
+CursorY=19
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcUHJvamVjdFxUdXJib1VwZGF0ZUNvcmUu
+ZHBr]
+Module=D:\Recursos GitHub\HDTurboUpdate\Project\TurboUpdateCore.dpk
+CursorX=2
+CursorY=33
+TopLine=7
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Project\TurboUpdateCore.dpk
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVyZmFjZXMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Interfaces.pas
+CursorX=82
+CursorY=79
+TopLine=43
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Interfaces.pas
+
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVyZmFjZXMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Interfaces.pas
+CursorX=82
+CursorY=79
+TopLine=43
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Interfaces.pas
 

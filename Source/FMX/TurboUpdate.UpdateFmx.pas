@@ -43,6 +43,7 @@ function TFmxUpdateThread.CreateView: TCustomForm;
 begin
   Result := TFormUpdateFmx.Create(Application);
 end;
+
 procedure TFmxUpdateThread.Work;
 var
   FModel: TUpdater;

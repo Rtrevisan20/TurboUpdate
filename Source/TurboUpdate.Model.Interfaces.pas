@@ -21,11 +21,15 @@ unit TurboUpdate.Model.Interfaces;
 interface
 
 uses
+  System.Net.HttpClient,
   System.SysUtils,
-  TurboUpdate.Model.Check,
+
   TurboUpdate.Model.Types;
 
 type
+  TReceiveDataEventRef   = reference to procedure(ALength: Int64; AProgress: Int64; var AAbort: Boolean);
+  TUpdateCheckResultProc = reference to procedure(UpdateAviable: Boolean; AVersion: TFileVersion);
+
   IUpdateModel = interface
     ['{CEAD1A55-AF8B-4003-B1C2-84D7371D2CE1}']
     procedure Cancel;
@@ -54,6 +58,36 @@ type
     property State: TUpdateState write SetUpdateState;
   end;
 
+  {Add by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate 6-5-25}
+  IModelInternet = interface
+    ['{58FA0D07-20F1-4EBD-BC53-1D0489F061BD}']
+    function GetUpdateUrl(AIniFileUrl: string; AKeyName: string): string; overload;
+    function GetUpdateUrl(AUrls: TStringArray; AKeyName: string): string; overload;
+    function GetUpdateVersion(AIniFileUrl: string; AKeyName: string; out AVersion:
+      TFileVersion): Boolean; overload;
+    function GetUpdateVersion(AUrls: TStringArray; AKeyName: string; out AVersion:
+      TFileVersion): Boolean; overload;
+    function GetUpdateVersion(AUrls: TStringArray; AKeyName: string): TFileVersion; overload;
+    function DowloadFile(AUrl: string; APath: string; ADownloadProgress: TReceiveDataEventRef): Boolean;
+  end;
+  {Add by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate 6-5-25}
+  IHttpClientHook = interface
+    ['{AD88BADC-A5E8-4E36-AEA5-190DB44A3703}']
+    function ResiveDataProc: TReceiveDataEvent; overload;
+    function ResiveDataProc(OnResiveData: TReceiveDataEventRef): IHttpClientHook; overload;
+  end;
+  {Add by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate 6-5-25}
+  IModelCheck = interface
+    ['{FD602A83-2C2B-4D0A-BDEE-F3440EDDD4D6}']
+    function GetVersionUpdate(AUrls: TStringArray; KeyName: string): TFileVersion;
+    function CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion): boolean; overload;
+    procedure CheckUpdate(AUrls: TStringArray; KeyName: string; AUpdateCheckResultProc:
+      TUpdateCheckResultProc); overload;
+    procedure CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion;
+      AUpdateCheckResultProc: TUpdateCheckResultProc); overload;
+  end;
+
 implementation
 
 end.
+

@@ -62,7 +62,6 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <BRCC_IncludePath>\Language.inc;$(BRCC_IncludePath)</BRCC_IncludePath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64x)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -97,16 +96,17 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="HDMessageDlg.dcp"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Consts.pas"/>
-        <DCCReference Include="..\Source\TurboUpdate.Model.Internet.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Types.pas"/>
-        <DCCReference Include="..\Source\TurboUpdate.Model.Check.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Utils.pas"/>
         <DCCReference Include="..\Source\Language\TurboUpdate.Model.LanguagePTbr.pas"/>
         <DCCReference Include="..\Source\Language\TurboUpdate.Model.LanguageUS.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Update.Thread.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Interfaces.pas"/>
         <DCCReference Include="..\Source\Language\TurboUpdate.Model.Language.Interfaces.pas"/>
+        <DCCReference Include="..\Source\TurboUpdate.Model.Internet.pas"/>
+        <DCCReference Include="..\Source\TurboUpdate.Model.HTTPClientHook.pas"/>
+        <DCCReference Include="..\Source\TurboUpdate.Model.Check.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -150,7 +150,7 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\TurboUpdate.bpl" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\TurboUpdateModel.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\TurboUpdateModel.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <Enabled>false</Enabled>
                         <RemoteName>TurboUpdateModel.bpl</RemoteName>

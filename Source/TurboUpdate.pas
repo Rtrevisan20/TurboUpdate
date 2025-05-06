@@ -23,14 +23,13 @@ interface
 uses
   HDMessageDlg,
   HDMessageDlg.Interfaces,
-
   System.Classes,
   System.SysUtils,
-
   TurboUpdate.FMX.Utils,
   TurboUpdate.Interfaces,
   TurboUpdate.Model.Check,
   TurboUpdate.Model.Consts,
+  TurboUpdate.Model.Interfaces,
   TurboUpdate.Model.Language.Interfaces,
   TurboUpdate.Model.Types,
   TurboUpdate.Model.Utils;
@@ -49,6 +48,7 @@ type
     FVersion        : TFileVersion;
     FExecUpdateApp  : string;
     FKillTaskApp    : TFileName;
+    FModelCheck     : IModelCheck;
     procedure CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
     procedure CheckStandalone(UpdateAviable: Boolean; Version: TFileVersion);
   public
@@ -140,12 +140,12 @@ end;
 
 function TTurboUpdate.ChekUpdate: boolean;
 begin
-  Result := CheckUpdate(FUrls, FKeyName, FVersion);
+  Result := FModelCheck.CheckUpdate(FUrls, FKeyName, FVersion);
 end;
 
 constructor TTurboUpdate.Create;
 begin
-
+  FModelCheck := TModelCheck.New;
 end;
 
 function TTurboUpdate.Description(aValue: string): iTurboUpdate;
@@ -168,7 +168,7 @@ end;
 
 function TTurboUpdate.GetVersion: TFileVersion;
 begin
-  Result := GetVersionUpdate(FUrls, FKeyName);
+  Result := FModelCheck.GetVersionUpdate(FUrls, FKeyName);
 end;
 
 function TTurboUpdate.KillTaskApp(aValue: TFileName): iTurboUpdate;
@@ -208,12 +208,12 @@ end;
 
 procedure TTurboUpdate.Standalone;
 begin
-  CheckUpdate(FUrls, FKeyName, FVersion, CheckStandalone);
+  FModelCheck.CheckUpdate(FUrls, FKeyName, FVersion, CheckStandalone);
 end;
 
 procedure TTurboUpdate.UpdateFMX;
 begin
-  CheckUpdate(FUrls, FKeyName, FVersion, CheckFMX);
+  FModelCheck.CheckUpdate(FUrls, FKeyName, FVersion, CheckFMX);
 end;
 
 procedure TTurboUpdate.UpdateThreadFMX;

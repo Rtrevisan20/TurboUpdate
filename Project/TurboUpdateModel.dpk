@@ -33,15 +33,16 @@ requires
 
 contains
   TurboUpdate.Model.Consts in '..\Source\TurboUpdate.Model.Consts.pas',
-  TurboUpdate.Model.Internet in '..\Source\TurboUpdate.Model.Internet.pas',
   TurboUpdate.Model in '..\Source\TurboUpdate.Model.pas',
   TurboUpdate.Model.Types in '..\Source\TurboUpdate.Model.Types.pas',
-  TurboUpdate.Model.Check in '..\Source\TurboUpdate.Model.Check.pas',
   TurboUpdate.Model.Utils in '..\Source\TurboUpdate.Model.Utils.pas',
   TurboUpdate.Model.LanguagePTbr in '..\Source\Language\TurboUpdate.Model.LanguagePTbr.pas',
   TurboUpdate.Model.LanguageUS in '..\Source\Language\TurboUpdate.Model.LanguageUS.pas',
   TurboUpdate.Model.Update.Thread in '..\Source\TurboUpdate.Model.Update.Thread.pas',
   TurboUpdate.Model.Interfaces in '..\Source\TurboUpdate.Model.Interfaces.pas',
-  TurboUpdate.Model.Language.Interfaces in '..\Source\Language\TurboUpdate.Model.Language.Interfaces.pas';
+  TurboUpdate.Model.Language.Interfaces in '..\Source\Language\TurboUpdate.Model.Language.Interfaces.pas',
+  TurboUpdate.Model.Internet in '..\Source\TurboUpdate.Model.Internet.pas',
+  TurboUpdate.Model.HTTPClientHook in '..\Source\TurboUpdate.Model.HTTPClientHook.pas',
+  TurboUpdate.Model.Check in '..\Source\TurboUpdate.Model.Check.pas';
 
 end.
