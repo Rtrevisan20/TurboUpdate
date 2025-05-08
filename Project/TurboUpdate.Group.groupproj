@@ -12,6 +12,9 @@
         <Projects Include="TurboUpdateCore.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="D:\Recursos Programacao\41 - Indy\Lib\Core\IndyCore290.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="TurboUpdateCore:Make">
         <MSBuild Projects="TurboUpdateCore.dproj" Targets="Make"/>
     </Target>
+    <Target Name="IndyCore290">
+        <MSBuild Projects="D:\Recursos Programacao\41 - Indy\Lib\Core\IndyCore290.dproj"/>
+    </Target>
+    <Target Name="IndyCore290:Clean">
+        <MSBuild Projects="D:\Recursos Programacao\41 - Indy\Lib\Core\IndyCore290.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IndyCore290:Make">
+        <MSBuild Projects="D:\Recursos Programacao\41 - Indy\Lib\Core\IndyCore290.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="TurboUpdateModel;TurboUpdateFMX;TurboUpdateCore"/>
+        <CallTarget Targets="TurboUpdateModel;TurboUpdateFMX;TurboUpdateCore;IndyCore290"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="TurboUpdateModel:Clean;TurboUpdateFMX:Clean;TurboUpdateCore:Clean"/>
+        <CallTarget Targets="TurboUpdateModel:Clean;TurboUpdateFMX:Clean;TurboUpdateCore:Clean;IndyCore290:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="TurboUpdateModel:Make;TurboUpdateFMX:Make;TurboUpdateCore:Make"/>
+        <CallTarget Targets="TurboUpdateModel:Make;TurboUpdateFMX:Make;TurboUpdateCore:Make;IndyCore290:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

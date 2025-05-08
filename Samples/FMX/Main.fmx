@@ -20,6 +20,7 @@ object FormMain: TFormMain
     Size.PlatformDefault = False
     TabOrder = 2
     Text = 'Check Update (1.9.3.0)'
+    TextSettings.Trimming = None
     OnClick = ButtonCheckUpdateOldClick
   end
   object ButtonCheckUpdateNew: TButton
@@ -30,6 +31,7 @@ object FormMain: TFormMain
     Size.PlatformDefault = False
     TabOrder = 1
     Text = 'Check Update (2.0.0.0)'
+    TextSettings.Trimming = None
     OnClick = ButtonCheckUpdateNewClick
   end
   object ButtonCheckUpdateCur: TButton
@@ -40,6 +42,7 @@ object FormMain: TFormMain
     Size.PlatformDefault = False
     TabOrder = 0
     Text = 'Check Update (for this exe)'
+    TextSettings.Trimming = None
     OnClick = ButtonCheckUpdateCurClick
   end
   object Label1: TLabel

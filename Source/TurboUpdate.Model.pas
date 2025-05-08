@@ -46,6 +46,7 @@ type
     FIsAbort: Boolean;
     FRootPath: string;
     FUpdateFile: string;
+    FInternet : IModelInternet;
   protected
     FView: IUpdateView;
     FConsts: IFactoryConsts;
@@ -76,6 +77,7 @@ implementation
 
 uses
   TurboUpdate.Model.Update.Thread,
+  TurboUpdate.Model.Internet.INDY,
   TurboUpdate.Model.Internet; // added by renato trevisan
 
 {$HINTS OFF}
@@ -108,12 +110,13 @@ end;
 
 constructor TUpdater.Create(View: IUpdateView; UpdateInfo: TUpdateInfo);
 begin
-  FLaunchUpdateApp := ExtractFileName(ParamStr(0)); //adicionado por renato trevisan dia 10/06/2024 16:30:00
-  FConsts := TFactoryConsts.New;
+  FLaunchUpdateApp  := ExtractFileName(ParamStr(0)); //adicionado por renato trevisan dia 10/06/2024 16:30:00
+  FInternet         := TModelInternetINDY.New;
+  FConsts           := TFactoryConsts.New;
   // Info
-  FUrls := UpdateInfo.Urls;
-  FKeyName := UpdateInfo.KeyName;
-  FExeNames := UpdateInfo.ExeNames + [ExtractFileName(ParamStr(0))];
+  FUrls             := UpdateInfo.Urls;
+  FKeyName          := UpdateInfo.KeyName;
+  FExeNames         := UpdateInfo.ExeNames + [ExtractFileName(ParamStr(0))];
   if UpdateInfo.RootPath.IsEmpty then //adicionado por renato trevisan dia 11/06/2024 14:00:30
     FRootPath := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)) + PathDelim + UpdateInfo.RootPath)
   else
@@ -190,7 +193,7 @@ begin
 
   try
     Result :=
-       TModelInternet.New.DowloadFile(
+       FInternet.DowloadFile(
             FDownloadPath,
             GetUpdateFileName,
             procedure(Length, Progress: Int64; var Abort: Boolean)
@@ -235,10 +238,10 @@ begin
       end
   );
 
-  if TModelInternet.New.GetUpdateVersion(FUrls, FKeyName, FileVersion) then
+  if FInternet.GetUpdateVersion(FUrls, FKeyName, FileVersion) then
     SyncView(procedure begin FView.Version := Format(FConsts.Consts.Version, [FileVersion.ToString]); end);
 
-  FDownloadPath := TModelInternet.New.GetUpdateUrl(FUrls, FKeyName);
+  FDownloadPath := FInternet.GetUpdateUrl(FUrls, FKeyName);
   Result := FDownloadPath <> '';
 end;
 

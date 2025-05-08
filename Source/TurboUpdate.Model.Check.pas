@@ -17,10 +17,10 @@ type
     class function New: IModelCheck;
     function GetVersionUpdate(AUrls: TStringArray; KeyName: string): TFileVersion;
     function CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion): boolean; overload;
-    procedure CheckUpdate(AUrls: TStringArray; KeyName: string; AUpdateCheckResultProc:
-      TUpdateCheckResultProc); overload;
+    procedure CheckUpdate(AUrls: TStringArray; KeyName: string;
+                          AUpdateCheckResultProc: TUpdateCheckResultProc); overload;
     procedure CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion;
-      AUpdateCheckResultProc: TUpdateCheckResultProc); overload;
+                          AUpdateCheckResultProc: TUpdateCheckResultProc); overload;
   end;
 
 var
@@ -30,7 +30,8 @@ implementation
 
 uses
   System.Classes,
-  TurboUpdate.Model.Internet;
+  TurboUpdate.Model.Internet,
+  TurboUpdate.Model.Internet.INDY;
 
 function TModelCheck.CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion): boolean;
 var
@@ -97,7 +98,7 @@ end;
 
 constructor TModelCheck.Create;
 begin
-  FModelInternet := TModelInternet.New;
+  FModelInternet := TModelInternetINDY.New;
 end;
 
 destructor TModelCheck.Destroy;

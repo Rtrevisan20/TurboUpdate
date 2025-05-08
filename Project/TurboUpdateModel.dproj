@@ -95,6 +95,9 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="HDMessageDlg.dcp"/>
+        <DCCReference Include="IndyCore290.dcp"/>
+        <DCCReference Include="IndySystem290.dcp"/>
+        <DCCReference Include="IndyProtocols290.dcp"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Consts.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Types.pas"/>
@@ -107,6 +110,7 @@
         <DCCReference Include="..\Source\TurboUpdate.Model.Internet.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.HTTPClientHook.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Check.pas"/>
+        <DCCReference Include="..\Source\TurboUpdate.Model.Internet.INDY.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

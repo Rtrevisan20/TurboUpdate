@@ -4,8 +4,8 @@
 	"installedModules": {
 		"github.com/rtrevisan20/hdmessagedlg": {
 			"name": "hdmessagedlg",
-			"version": "1.0.0",
-			"hash": "c013533f390e6a243b224eb553c9945a",
+			"version": "1.2.1",
+			"hash": "747dd9faa3738efc8abdad192b51c0a2",
 			"artifacts": {},
 			"failed": false,
 			"changed": false

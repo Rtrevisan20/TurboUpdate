@@ -69,7 +69,7 @@ begin
     if FView <> Application.MainForm then
       Sync(procedure
       begin
-        FView.DisposeOf;
+        FView.Free;
       end)
     else
     begin

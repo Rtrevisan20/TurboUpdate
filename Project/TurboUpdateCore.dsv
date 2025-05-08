@@ -1,8 +1,8 @@
 ﻿[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLnBhcw==]
 Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.pas
-CursorX=56
-CursorY=22
-TopLine=1
+CursorX=32
+CursorY=171
+TopLine=149
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -107,7 +107,6 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Interfaces.pas
-
 [ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
 LkludGVyZmFjZXMucGFz]
 Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Interfaces.pas
@@ -118,4 +117,94 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Interfaces.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkhUVFBDbGllbnRIb29rLnBhcw==]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.HTTPClientHook.pas
+CursorX=34
+CursorY=46
+TopLine=1
+LeftCol=1
+Elisions={{32,35},{34,3},{''}}{{36,35},{39,3},{''}}
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.HTTPClientHook.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVybmV0LnBhcw==]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+CursorX=42
+CursorY=236
+TopLine=207
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVybmV0LklORFkucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.INDY.pas
+CursorX=21
+CursorY=14
+TopLine=1
+LeftCol=1
+Elisions={{98,66},{119,3},{''}}{{145,88},{156,3},{''}}{{158,80},{171,3},{''}}{{174,39},{189,3},{''}}{{192,39},{205,3},{''}}{{207,98},{223,3},{''}}{{225,54},{228,3},{''}}
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.INDY.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVybmV0LklORFkucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.INDY.pas
+CursorX=21
+CursorY=14
+TopLine=1
+LeftCol=1
+Elisions={{98,66},{119,3},{''}}{{145,88},{156,3},{''}}{{158,80},{171,3},{''}}{{174,39},{189,3},{''}}{{192,39},{205,3},{''}}{{207,98},{223,3},{''}}{{225,54},{228,3},{''}}
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.INDY.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVybmV0LnBhcw==]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+CursorX=42
+CursorY=236
+TopLine=207
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVybmV0LnBhcw==]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+CursorX=1
+CursorY=33
+TopLine=13
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkNoZWNrLnBhcw==]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Check.pas
+CursorX=38
+CursorY=111
+TopLine=89
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Check.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLk1vZGVs
+LkludGVybmV0LnBhcw==]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+CursorX=43
+CursorY=90
+TopLine=63
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Model.Internet.pas
+[ClosedView_YzpccHJvZ3JhbSBmaWxlcyAoeDg2KVxlbWJhcmNhZGVyb1xzdHVkaW9cMjMuMFxzb3VyY2VccnRs
+XGNvbW1vblxTeXN0ZW0uQ2xhc3Nlcy5wYXM=]
+Module=c:\program files (x86)\embarcadero\studio\23.0\source\rtl\common\System.Classes.pas
+CursorX=1
+CursorY=100
+TopLine=80
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=
 

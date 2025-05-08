@@ -21,9 +21,9 @@ unit TurboUpdate.Model.Interfaces;
 interface
 
 uses
+  IdComponent,
   System.Net.HttpClient,
   System.SysUtils,
-
   TurboUpdate.Model.Types;
 
 type
@@ -63,10 +63,8 @@ type
     ['{58FA0D07-20F1-4EBD-BC53-1D0489F061BD}']
     function GetUpdateUrl(AIniFileUrl: string; AKeyName: string): string; overload;
     function GetUpdateUrl(AUrls: TStringArray; AKeyName: string): string; overload;
-    function GetUpdateVersion(AIniFileUrl: string; AKeyName: string; out AVersion:
-      TFileVersion): Boolean; overload;
-    function GetUpdateVersion(AUrls: TStringArray; AKeyName: string; out AVersion:
-      TFileVersion): Boolean; overload;
+    function GetUpdateVersion(AIniFileUrl: string; AKeyName: string; out AVersion: TFileVersion): Boolean; overload;
+    function GetUpdateVersion(AUrls: TStringArray; AKeyName: string; out AVersion: TFileVersion): Boolean; overload;
     function GetUpdateVersion(AUrls: TStringArray; AKeyName: string): TFileVersion; overload;
     function DowloadFile(AUrl: string; APath: string; ADownloadProgress: TReceiveDataEventRef): Boolean;
   end;
@@ -75,6 +73,9 @@ type
     ['{AD88BADC-A5E8-4E36-AEA5-190DB44A3703}']
     function ResiveDataProc: TReceiveDataEvent; overload;
     function ResiveDataProc(OnResiveData: TReceiveDataEventRef): IHttpClientHook; overload;
+    function ResiveWorkEventId: TWorkEvent; overload;
+    function ResiveWorkEventId(OnResiveData: TReceiveDataEventRef): IHttpClientHook; overload;
+    function IsAbort(AAbort : boolean): IHttpClientHook;
   end;
   {Add by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate 6-5-25}
   IModelCheck = interface

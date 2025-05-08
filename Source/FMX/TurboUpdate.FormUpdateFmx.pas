@@ -22,7 +22,6 @@ interface
 
 uses
   HDMessageDlg,
-
   FMX.Controls,
   FMX.Controls.Presentation,
   FMX.Dialogs,
@@ -32,15 +31,12 @@ uses
   FMX.Objects,
   FMX.StdCtrls,
   FMX.Types,
-
   HDMessageDlg.Interfaces,
-
   System.Classes,
   System.SysUtils,
   System.Types,
   System.UITypes,
   System.Variants,
-
   TurboUpdate.Model.Consts,
   TurboUpdate.Model.Interfaces,
   TurboUpdate.Model.Language.Interfaces,
@@ -90,6 +86,7 @@ implementation
 
 uses
   Winapi.ShellApi;
+
 {$R *.fmx}
 
 procedure TFormUpdateFmx.ButtonCancelClick(Sender: TObject);

@@ -29,7 +29,10 @@ package TurboUpdateModel;
 
 requires
   rtl,
-  HDMessageDlg;
+  HDMessageDlg,
+  IndyCore290,
+  IndySystem290,
+  IndyProtocols290;
 
 contains
   TurboUpdate.Model.Consts in '..\Source\TurboUpdate.Model.Consts.pas',
@@ -43,6 +46,7 @@ contains
   TurboUpdate.Model.Language.Interfaces in '..\Source\Language\TurboUpdate.Model.Language.Interfaces.pas',
   TurboUpdate.Model.Internet in '..\Source\TurboUpdate.Model.Internet.pas',
   TurboUpdate.Model.HTTPClientHook in '..\Source\TurboUpdate.Model.HTTPClientHook.pas',
-  TurboUpdate.Model.Check in '..\Source\TurboUpdate.Model.Check.pas';
+  TurboUpdate.Model.Check in '..\Source\TurboUpdate.Model.Check.pas',
+  TurboUpdate.Model.Internet.INDY in '..\Source\TurboUpdate.Model.Internet.INDY.pas';
 
 end.

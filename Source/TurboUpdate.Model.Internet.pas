@@ -68,29 +68,30 @@ end;
 {$HINTS OFF}
 function TModelInternet.DowloadFile(AUrl, APath: string; ADownloadProgress: TReceiveDataEventRef): Boolean;
 var
-  Http: THttpClient;
-  Stream: TStream;
-  Hook: IHttpClientHook;
+  Http    : THttpClient;
+  Stream  : TStream;
+  FHook   : IHttpClientHook;
   Response: IHTTPResponse;
-  Time: Cardinal;
+  FTime   : Cardinal;
 begin
-  Result := False;
-  Time := 0;
-  Hook := THttpClientHook.New;
-  Hook.ResiveDataProc(
+  Result  := False;
+  FTime   := 0;
+  FHook   := THttpClientHook.New;
+  FHook.ResiveDataProc(
     procedure(ALength, AProgress: Int64; var AAbort: Boolean)
     begin
-      if (Time < TThread.GetTickCount) or (ALength = AProgress) then
+      if (FTime < TThread.GetTickCount) or (ALength = AProgress) then
       begin
         ADownloadProgress(ALength, AProgress, AAbort);
-        Time := TThread.GetTickCount + 1000 div 30; // 30 per second
+        FTime := TThread.GetTickCount + 1000 div 30; // 30 per second
       end;
+
     end);
   Stream := TFileStream.Create(APath, fmCreate);
   try
     Http := THttpClient.Create;
     Http.ProxySettings := ProxySettings;
-    Http.OnReceiveData := Hook.ResiveDataProc;
+    Http.OnReceiveData := FHook.ResiveDataProc;
     try
       try
         Response := Http.Get(AUrl, Stream);
@@ -142,7 +143,6 @@ begin
     Http := THttpClient.Create;
     try
       Http.ProxySettings := ProxySettings;
-      // Http.ConnectTimeout := 10 * 1000;// 10 sec
       if Http.Get(AUrl, Stream).StatusCode >= 300 then
       FreeAndNil(Stream);
       Result := Stream;
