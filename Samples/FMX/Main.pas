@@ -42,7 +42,7 @@ procedure TFormMain.ButtonCheckUpdateCurClick(Sender: TObject);
 begin
   GlobalUpdate
    .ExeNames(['FmxApplication.exe'])
-   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/refs/heads/master/Update.ini'])
    .KeyName('TurboUpdate.Fmx.Standalone')
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.CreateForFile(ParamStr(0)))
@@ -52,7 +52,7 @@ procedure TFormMain.ButtonCheckUpdateNewClick(Sender: TObject);
 begin
   GlobalUpdate
    .ExeNames(['FmxApplication.exe'])
-   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/refs/heads/master/Update.ini'])
    .KeyName('TurboUpdate.Fmx.Standalone')
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.Create('2.0.0.0'))
@@ -62,7 +62,7 @@ procedure TFormMain.ButtonCheckUpdateOldClick(Sender: TObject);
 begin
   GlobalUpdate
    .ExeNames(['&ALL']) //&ALL
-   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+   .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/refs/heads/master/Update.ini'])
    .KeyName('TurboUpdate.Fmx.Standalone')
    .Description('TurboUpdate/Fmx/Standalone')
    .Version(TFileVersion.Create('1.9.3.0'))
@@ -73,7 +73,7 @@ procedure TFormMain.FormShow(Sender: TObject);
 begin
   Label1.Text := 'On GitHub - Version: ' +
    GlobalUpdate
-    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/master/Update.ini'])
+    .Urls(['https://raw.githubusercontent.com/Rtrevisan20/TurboUpdate/refs/heads/master/Update.ini'])
     .KeyName('TurboUpdate.Fmx.Standalone')
     .GetVersion.ToString;
 end;
