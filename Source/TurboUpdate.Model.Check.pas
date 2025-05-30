@@ -30,8 +30,7 @@ implementation
 
 uses
   System.Classes,
-  TurboUpdate.Model.Internet,
-  TurboUpdate.Model.Internet.INDY;
+  TurboUpdate.Model.Internet.Factory;
 
 function TModelCheck.CheckUpdate(AUrls: TStringArray; KeyName: string; AVersion: TFileVersion): boolean;
 var
@@ -98,7 +97,7 @@ end;
 
 constructor TModelCheck.Create;
 begin
-  FModelInternet := TModelInternetINDY.New;
+  FModelInternet := TModelIternetFactory.New.InternetSystem;;
 end;
 
 destructor TModelCheck.Destroy;

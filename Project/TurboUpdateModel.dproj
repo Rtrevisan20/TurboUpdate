@@ -19,11 +19,6 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win64x' and '$(Base)'=='true') or '$(Base_Win64x)'!=''">
-        <Base_Win64x>true</Base_Win64x>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
         <Cfg_1>true</Cfg_1>
         <CfgParent>Base</CfgParent>
@@ -54,20 +49,13 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
-        <DCC_UnitSearchPath>modules\.dcp;modules\.dcu;modules;modules\hdmessagedlg\src\FMX;modules\hdmessagedlg\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\modules\.dcp;..\modules\.dcu;..\modules;..\modules\hdmessagedlg\src\FMX;..\modules\hdmessagedlg\src;..\modules\hdmessagedlg\Samples;modules\.dcp;modules\.dcu;modules;modules\hdmessagedlg\Samples;modules\hdmessagedlg\src\FMX;modules\hdmessagedlg\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <BRCC_IncludePath>\Language.inc;$(BRCC_IncludePath)</BRCC_IncludePath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_Win64x)'!=''">
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
-        <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -94,10 +82,16 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
+<<<<<<< HEAD
         <DCCReference Include="HDMessageDlg.dcp"/>
         <DCCReference Include="IndyCore.dcp"/>
         <DCCReference Include="IndySystem.dcp"/>
         <DCCReference Include="IndyProtocols.dcp"/>
+=======
+        <DCCReference Include="IndySystem.dcp"/>
+        <DCCReference Include="IndyProtocols.dcp"/>
+        <DCCReference Include="IndyCore.dcp"/>
+>>>>>>> 8052ff9ccae45d6c3ddf69d84c9b9e17eea45ae2
         <DCCReference Include="..\Source\TurboUpdate.Model.Consts.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Types.pas"/>
@@ -107,10 +101,11 @@
         <DCCReference Include="..\Source\TurboUpdate.Model.Update.Thread.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Interfaces.pas"/>
         <DCCReference Include="..\Source\Language\TurboUpdate.Model.Language.Interfaces.pas"/>
-        <DCCReference Include="..\Source\TurboUpdate.Model.Internet.pas"/>
-        <DCCReference Include="..\Source\TurboUpdate.Model.HTTPClientHook.pas"/>
+        <DCCReference Include="..\Source\Internet\TurboUpdate.Model.Internet.pas"/>
+        <DCCReference Include="..\Source\Internet\TurboUpdate.Model.HTTPClientHook.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Check.pas"/>
-        <DCCReference Include="..\Source\TurboUpdate.Model.Internet.INDY.pas"/>
+        <DCCReference Include="..\Source\Internet\TurboUpdate.Model.Internet.INDY.pas"/>
+        <DCCReference Include="..\Source\Internet\TurboUpdate.Model.Internet.Factory.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -154,7 +149,7 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\17.0\Bpl\TurboUpdate.bpl" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\TurboUpdateModel.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\TurboUpdateModel.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <Enabled>false</Enabled>
                         <RemoteName>TurboUpdateModel.bpl</RemoteName>
@@ -754,9 +749,6 @@
                     <Platform Name="Win64">
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="Win64x">
-                        <Operation>1</Operation>
-                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectiOSDeviceDebug">
                     <Platform Name="iOSDevice32">
@@ -1023,7 +1015,6 @@
             <Platforms>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
-                <Platform value="Win64x">False</Platform>
             </Platforms>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

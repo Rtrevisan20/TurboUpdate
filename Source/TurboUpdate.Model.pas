@@ -39,14 +39,14 @@ type
     type TUpdateResult = (Success, Fail, TryAgain, Abort);
   private
     FLaunchUpdateApp: TFileName; // Adicionado por renato trevisan dia 10/06/2024 16:42:20
-    FDownloadPath: string;
-    FUrls: TStringArray;
-    FExeNames: TStringArray;
-    FKeyName: string;
-    FIsAbort: Boolean;
-    FRootPath: string;
-    FUpdateFile: string;
-    FInternet : IModelInternet;
+    FDownloadPath   : string;
+    FUrls           : TStringArray;
+    FExeNames       : TStringArray;
+    FKeyName        : string;
+    FIsAbort        : Boolean;
+    FRootPath       : string;
+    FUpdateFile     : string;
+    FInternet       : IModelInternet;
   protected
     FView: IUpdateView;
     FConsts: IFactoryConsts;
@@ -77,8 +77,7 @@ implementation
 
 uses
   TurboUpdate.Model.Update.Thread,
-  TurboUpdate.Model.Internet.INDY,
-  TurboUpdate.Model.Internet; // added by renato trevisan
+  TurboUpdate.Model.Internet.factory; // added by renato trevisan
 
 {$HINTS OFF}
 function FileToOld(FileName: string): Boolean;
@@ -111,7 +110,7 @@ end;
 constructor TUpdater.Create(View: IUpdateView; UpdateInfo: TUpdateInfo);
 begin
   FLaunchUpdateApp  := ExtractFileName(ParamStr(0)); //adicionado por renato trevisan dia 10/06/2024 16:30:00
-  FInternet         := TModelInternetINDY.New;
+  FInternet         := TModelIternetFactory.New.InternetSystem;
   FConsts           := TFactoryConsts.New;
   // Info
   FUrls             := UpdateInfo.Urls;

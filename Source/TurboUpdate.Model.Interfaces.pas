@@ -68,6 +68,13 @@ type
     function GetUpdateVersion(AUrls: TStringArray; AKeyName: string): TFileVersion; overload;
     function DowloadFile(AUrl: string; APath: string; ADownloadProgress: TReceiveDataEventRef): Boolean;
   end;
+  {Add by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate 27-5-25}
+  IModelIternetFactory = interface
+    ['{880B05C8-2062-41B0-AEB9-BD3AAF74F570}']
+    function InternetSystem: IModelInternet;
+    function InternetINDY  : IModelInternet;
+  end;
+
   {Add by Renato Trevisan Fork=https://github.com/Rtrevisan20/TurboUpdate 6-5-25}
   IHttpClientHook = interface
     ['{AD88BADC-A5E8-4E36-AEA5-190DB44A3703}']
