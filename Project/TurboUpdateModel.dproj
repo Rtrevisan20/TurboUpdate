@@ -95,9 +95,9 @@
         </DelphiCompile>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="HDMessageDlg.dcp"/>
-        <DCCReference Include="IndyCore290.dcp"/>
-        <DCCReference Include="IndySystem290.dcp"/>
-        <DCCReference Include="IndyProtocols290.dcp"/>
+        <DCCReference Include="IndyCore.dcp"/>
+        <DCCReference Include="IndySystem.dcp"/>
+        <DCCReference Include="IndyProtocols.dcp"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Consts.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Types.pas"/>

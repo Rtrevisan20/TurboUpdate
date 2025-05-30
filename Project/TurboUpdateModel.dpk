@@ -30,9 +30,9 @@ package TurboUpdateModel;
 requires
   rtl,
   HDMessageDlg,
-  IndyCore290,
-  IndySystem290,
-  IndyProtocols290;
+  IndyCore,
+  IndySystem,
+  IndyProtocols;
 
 contains
   TurboUpdate.Model.Consts in '..\Source\TurboUpdate.Model.Consts.pas',
