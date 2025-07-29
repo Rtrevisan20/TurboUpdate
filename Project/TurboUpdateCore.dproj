@@ -3,7 +3,7 @@
         <ProjectGuid>{2375C788-A767-4F16-8A65-84825016E30B}</ProjectGuid>
         <MainSource>TurboUpdateCore.dpk</MainSource>
         <ProjectVersion>19.5</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>

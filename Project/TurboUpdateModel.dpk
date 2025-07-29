@@ -31,7 +31,9 @@ requires
   rtl,
   IndySystem,
   IndyProtocols,
-  IndyCore;
+  IndyCore,
+  dbrtl,
+  fmx;
 
 contains
   TurboUpdate.Model.Consts in '..\Source\TurboUpdate.Model.Consts.pas',
@@ -47,6 +49,9 @@ contains
   TurboUpdate.Model.HTTPClientHook in '..\Source\Internet\TurboUpdate.Model.HTTPClientHook.pas',
   TurboUpdate.Model.Check in '..\Source\TurboUpdate.Model.Check.pas',
   TurboUpdate.Model.Internet.INDY in '..\Source\Internet\TurboUpdate.Model.Internet.INDY.pas',
-  TurboUpdate.Model.Internet.Factory in '..\Source\Internet\TurboUpdate.Model.Internet.Factory.pas';
+  TurboUpdate.Model.Internet.Factory in '..\Source\Internet\TurboUpdate.Model.Internet.Factory.pas',
+  TurboUpdate.FMX.Utils in '..\Source\FMX\TurboUpdate.FMX.Utils.pas',
+  TurboUpdate.FormUpdateFmx in '..\Source\FMX\TurboUpdate.FormUpdateFmx.pas' {FormUpdateFmx},
+  TurboUpdate.UpdateFmx in '..\Source\FMX\TurboUpdate.UpdateFmx.pas';
 
 end.

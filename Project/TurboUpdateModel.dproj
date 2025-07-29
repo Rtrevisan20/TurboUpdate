@@ -85,6 +85,8 @@
         <DCCReference Include="IndySystem.dcp"/>
         <DCCReference Include="IndyProtocols.dcp"/>
         <DCCReference Include="IndyCore.dcp"/>
+        <DCCReference Include="dbrtl.dcp"/>
+        <DCCReference Include="fmx.dcp"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Consts.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.pas"/>
         <DCCReference Include="..\Source\TurboUpdate.Model.Types.pas"/>
@@ -99,6 +101,12 @@
         <DCCReference Include="..\Source\TurboUpdate.Model.Check.pas"/>
         <DCCReference Include="..\Source\Internet\TurboUpdate.Model.Internet.INDY.pas"/>
         <DCCReference Include="..\Source\Internet\TurboUpdate.Model.Internet.Factory.pas"/>
+        <DCCReference Include="..\Source\FMX\TurboUpdate.FMX.Utils.pas"/>
+        <DCCReference Include="..\Source\FMX\TurboUpdate.FormUpdateFmx.pas">
+            <Form>FormUpdateFmx</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Source\FMX\TurboUpdate.UpdateFmx.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
