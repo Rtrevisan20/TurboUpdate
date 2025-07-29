@@ -6,9 +6,6 @@
         <Projects Include="TurboUpdateModel.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\Source\FMX\TurboUpdateFMX.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="TurboUpdateCore.dproj">
             <Dependencies/>
         </Projects>
@@ -29,15 +26,6 @@
     <Target Name="TurboUpdateModel:Make">
         <MSBuild Projects="TurboUpdateModel.dproj" Targets="Make"/>
     </Target>
-    <Target Name="TurboUpdateFMX">
-        <MSBuild Projects="..\Source\FMX\TurboUpdateFMX.dproj"/>
-    </Target>
-    <Target Name="TurboUpdateFMX:Clean">
-        <MSBuild Projects="..\Source\FMX\TurboUpdateFMX.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="TurboUpdateFMX:Make">
-        <MSBuild Projects="..\Source\FMX\TurboUpdateFMX.dproj" Targets="Make"/>
-    </Target>
     <Target Name="TurboUpdateCore">
         <MSBuild Projects="TurboUpdateCore.dproj"/>
     </Target>
@@ -48,13 +36,13 @@
         <MSBuild Projects="TurboUpdateCore.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="TurboUpdateModel;TurboUpdateFMX;TurboUpdateCore"/>
+        <CallTarget Targets="TurboUpdateModel;TurboUpdateCore"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="TurboUpdateModel:Clean;TurboUpdateFMX:Clean;TurboUpdateCore:Clean"/>
+        <CallTarget Targets="TurboUpdateModel:Clean;TurboUpdateCore:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="TurboUpdateModel:Make;TurboUpdateFMX:Make;TurboUpdateCore:Make"/>
+        <CallTarget Targets="TurboUpdateModel:Make;TurboUpdateCore:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

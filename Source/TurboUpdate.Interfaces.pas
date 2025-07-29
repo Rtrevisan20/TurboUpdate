@@ -38,9 +38,9 @@ type
     function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
     function ChekUpdate                                   : boolean;
     function GetVersion                                   : TFileVersion;
-    procedure UpdateThreadFMX;
+//    procedure UpdateThreadFMX;
     procedure Standalone;
-    procedure UpdateFMX;
+//    procedure UpdateFMX;
   end;
 
 implementation

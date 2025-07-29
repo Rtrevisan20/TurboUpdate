@@ -31,10 +31,10 @@ package TurboUpdateCore;
 requires
   rtl,
   TurboUpdateModel,
-  TurboUpdateFMX;
+  dbrtl,
+  fmx;
 
 contains
   TurboUpdate in '..\Source\TurboUpdate.pas',
   TurboUpdate.Interfaces in '..\Source\TurboUpdate.Interfaces.pas';
-
 end.

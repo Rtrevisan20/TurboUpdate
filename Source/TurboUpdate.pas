@@ -25,7 +25,6 @@ uses
   HDMessageDlg.Interfaces,
   System.Classes,
   System.SysUtils,
-  TurboUpdate.FMX.Utils,
   TurboUpdate.Interfaces,
   TurboUpdate.Model.Check,
   TurboUpdate.Model.Consts,
@@ -49,7 +48,7 @@ type
     FExecUpdateApp  : string;
     FKillTaskApp    : TFileName;
     FModelCheck     : IModelCheck;
-    procedure CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
+//    procedure CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
     procedure CheckStandalone(UpdateAviable: Boolean; Version: TFileVersion);
   public
     constructor Create;
@@ -66,9 +65,9 @@ type
     function KillTaskApp(aValue: TFileName)               : iTurboUpdate;
     function ChekUpdate                                   : Boolean;
     function GetVersion                                   : TFileVersion;
-    procedure UpdateThreadFMX;
+//    procedure UpdateThreadFMX;
     procedure Standalone;
-    procedure UpdateFMX;
+//    procedure UpdateFMX;
   end;
 
 var
@@ -76,7 +75,7 @@ var
 
 implementation
 
-procedure TTurboUpdate.CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
+{procedure TTurboUpdate.CheckFMX(UpdateAviable: Boolean; Version: TFileVersion);
 var
   FUpdateInfo: TUpdateInfo;
 begin
@@ -109,7 +108,7 @@ begin
     .MsgIcon(TiMessage)
     .MsgType(TyOK)
     .DisplayMessage;
-end;
+end;}
 
 procedure TTurboUpdate.CheckStandalone(UpdateAviable: Boolean; Version: TFileVersion);
 begin
@@ -211,7 +210,7 @@ begin
   FModelCheck.CheckUpdate(FUrls, FKeyName, FVersion, CheckStandalone);
 end;
 
-procedure TTurboUpdate.UpdateFMX;
+{procedure TTurboUpdate.UpdateFMX;
 begin
   FModelCheck.CheckUpdate(FUrls, FKeyName, FVersion, CheckFMX);
 end;
@@ -227,7 +226,7 @@ begin
   FUpdateInfo.RootPath    := FRootPath;
   FUpdateInfo.PngRes      := FPngRes;
   FMXUpdate(FUpdateInfo);
-end;
+end;}
 
 function TTurboUpdate.Urls(aValue: TStringArray): iTurboUpdate;
 begin

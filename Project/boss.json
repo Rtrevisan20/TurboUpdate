@@ -1,0 +1,11 @@
+{
+	"name": "TurboUpdate",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "./src",
+	"projects": [],
+	"dependencies": {
+		"https://github.com/rtrevisan20/hdmessagedlg": "^1.2.1"
+	}
+}
