@@ -1,8 +1,8 @@
 ﻿[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLnBhcw==]
 Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.pas
-CursorX=32
-CursorY=171
-TopLine=149
+CursorX=29
+CursorY=247
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -207,4 +207,55 @@ LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLkludGVy
+ZmFjZXMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+CursorX=27
+CursorY=42
+TopLine=19
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXEZNWFxUdXJib1VwZGF0ZS5G
+TVguVXRpbHMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\FMX\TurboUpdate.FMX.Utils.pas
+CursorX=6
+CursorY=19
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\FMX\TurboUpdate.FMX.Utils.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLkludGVy
+ZmFjZXMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+CursorX=27
+CursorY=42
+TopLine=19
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXFR1cmJvVXBkYXRlLkludGVy
+ZmFjZXMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+CursorX=30
+CursorY=41
+TopLine=19
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\TurboUpdate.Interfaces.pas
+
+[ClosedView_RDpcUmVjdXJzb3MgR2l0SHViXEhEVHVyYm9VcGRhdGVcU291cmNlXEZNWFxUdXJib1VwZGF0ZS5G
+TVguVXRpbHMucGFz]
+Module=D:\Recursos GitHub\HDTurboUpdate\Source\FMX\TurboUpdate.FMX.Utils.pas
+CursorX=6
+CursorY=19
+TopLine=1
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Recursos GitHub\HDTurboUpdate\Source\FMX\TurboUpdate.FMX.Utils.pas
 
